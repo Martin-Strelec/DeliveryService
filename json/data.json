@@ -1,0 +1,254 @@
+{
+    "items": [
+        {
+            "establishmentName": "Seaside Bistro",
+            "establishmentIdentifier": "seasideBistro",
+            "establishmentType": "Restaurant",
+            "location": {
+                "city": "Sligo",
+                "address": "123 Oceanview Road, Sligo, Ireland"
+            },
+            "contact": {
+                "phone": "+353 71 123 4567",
+                "email": "contact@seasidebistro.ie",
+                "website": "http://www.seasidebistro.ie"
+            },
+            "foodType": "Seafood",
+            "deliveryHours": "12:00 PM - 9:00 PM",
+            "openingHours": "10:00 AM - 10:00 PM",
+            "description": "Enjoy fresh seafood with a stunning view of the coastline.",
+            "banner": "./images/banners/seasideBistro.jpg",
+            "tags": ["seafood", "coastal", "dining"],
+            "menu": [
+                {
+                    "Starters": [
+                        { "Type": "Clam Chowder", "Price": 8 },
+                        { "Type": "Grilled Prawns", "Price": 12 },
+                        { "Type": "Crab Cakes", "Price": 10 }
+                    ]
+                },
+                {
+                    "Main Dishes": [
+                        { "Type": "Lobster Thermidor", "Price": 25 },
+                        { "Type": "Seared Scallops", "Price": 22 },
+                        { "Type": "Grilled Salmon Fillet", "Price": 20 }
+                    ]
+                },
+                {
+                    "Sides": [
+                        { "Type": "Garlic Butter Potatoes", "Price": 5 },
+                        { "Type": "Seaweed Salad", "Price": 4 },
+                        { "Type": "Steamed Vegetables", "Price": 4 }
+                    ]
+                },
+                {
+                    "Drinks": [
+                        { "Type": "Mineral Water", "Price": 0 },
+                        { "Type": "Lemonade", "Price": 3 },
+                        { "Type": "White Wine", "Price": 5 }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "Mountain Grill",
+            "establishmentIdentifier": "mountainGrill",
+            "establishmentType": "Restaurant",
+            "location": {
+                "city": "Donegal",
+                "address": "456 Highland Lane, Donegal, Ireland"
+            },
+            "contact": {
+                "phone": "+353 74 987 6543",
+                "email": "info@mountaingrill.ie",
+                "website": "http://www.mountaingrill.ie"
+            },
+            "foodType": "Grill",
+            "deliveryHours": "11:00 AM - 8:00 PM",
+            "openingHours": "10:00 AM - 9:00 PM",
+            "description": "A rustic spot serving grilled steaks and local specialties.",
+            "banner": "./images/banners/mountainGrill.jpg",
+            "tags": ["grill", "steak", "mountain view"],
+            "menu": [
+                {
+                    "Starters": [
+                        { "Type": "Grilled Halloumi", "Price": 7 },
+                        { "Type": "BBQ Chicken Wings", "Price": 8 },
+                        { "Type": "Loaded Nachos", "Price": 9 }
+                    ]
+                },
+                {
+                    "Main Dishes": [
+                        { "Type": "T-Bone Steak", "Price": 28 },
+                        { "Type": "Barbecued Pork Ribs", "Price": 24 },
+                        { "Type": "Grilled Chicken Breast", "Price": 18 }
+                    ]
+                },
+                {
+                    "Sides": [
+                        { "Type": "Mashed Potatoes", "Price": 4 },
+                        { "Type": "Corn on the Cob", "Price": 3 },
+                        { "Type": "Baked Beans", "Price": 3 }
+                    ]
+                },
+                {
+                    "Drinks": [
+                        { "Type": "Craft Beer", "Price": 5 },
+                        { "Type": "House Lemonade", "Price": 3 },
+                        { "Type": "Iced Tea", "Price": 3 }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "Herb & Spice Cafe",
+            "establishmentIdentifier": "herbSpiceCafe",
+            "establishmentType": "Cafe",
+            "location": {
+                "city": "Sligo",
+                "address": "789 Spice Road, Sligo, Ireland"
+            },
+            "contact": {
+                "phone": "+353 71 234 5678",
+                "email": "hello@herbandspicecafe.ie",
+                "website": "http://www.herbandspicecafe.ie"
+            },
+            "foodType": "Mediterranean",
+            "deliveryHours": "9:00 AM - 7:00 PM",
+            "openingHours": "8:00 AM - 8:00 PM",
+            "description": "A cozy cafe serving Mediterranean-inspired dishes and beverages.",
+            "banner": "./images/banners/herbsAndSpiceCafe.jpg",
+            "tags": ["mediterranean", "cafe", "healthy"],
+            "menu": [
+                {
+                    "Starters": [
+                        { "Type": "Hummus with Pita", "Price": 6 },
+                        { "Type": "Greek Salad", "Price": 7 },
+                        { "Type": "Stuffed Grape Leaves", "Price": 8 }
+                    ]
+                },
+                {
+                    "Main Dishes": [
+                        { "Type": "Chicken Souvlaki", "Price": 15 },
+                        { "Type": "Vegetarian Moussaka", "Price": 14 },
+                        { "Type": "Lamb Kofta", "Price": 16 }
+                    ]
+                },
+                {
+                    "Sides": [
+                        { "Type": "Couscous Salad", "Price": 4 },
+                        { "Type": "Tabbouleh", "Price": 4 },
+                        { "Type": "Olive Tapenade", "Price": 3 }
+                    ]
+                },
+                {
+                    "Drinks": [
+                        { "Type": "Turkish Coffee", "Price": 4 },
+                        { "Type": "Mint Tea", "Price": 3 },
+                        { "Type": "Fresh Orange Juice", "Price": 3 }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "The Irish Pub",
+            "establishmentIdentifier": "theIrishPub",
+            "establishmentType": "Pub",
+            "location": {
+                "city": "Donegal",
+                "address": "321 Emerald Street, Donegal, Ireland"
+            },
+            "contact": {
+                "phone": "+353 74 876 5432",
+                "email": "contact@theirishpub.ie",
+                "website": "http://www.theirishpub.ie"
+            },
+            "foodType": "Irish",
+            "deliveryHours": "4:00 PM - 11:00 PM",
+            "openingHours": "12:00 PM - 12:00 AM",
+            "description": "A traditional pub serving hearty Irish meals and drinks.",
+            "banner": "./images/banners/irishPub.jpg",
+            "tags": ["irish", "pub food", "Drinks"],
+            "menu": [
+                {
+                    "Starters": [
+                        { "Type": "Irish Potato Soup", "Price": 5 },
+                        { "Type": "Smoked Salmon", "Price": 10 },
+                        { "Type": "Black Pudding", "Price": 7 }
+                    ]
+                },
+                {
+                    "Main Dishes": [
+                        { "Type": "Beef and Guinness Stew", "Price": 15 },
+                        { "Type": "Irish Lamb Shank", "Price": 18 },
+                        { "Type": "Fish and Chips", "Price": 14 }
+                    ]
+                },
+                {
+                    "Sides": [
+                        { "Type": "Colcannon", "Price": 4 },
+                        { "Type": "Boxty", "Price": 5 },
+                        { "Type": "Soda Bread", "Price": 3 }
+                    ]
+                },
+                {
+                    "Drinks": [
+                        { "Type": "Guinness", "Price": 5 },
+                        { "Type": "Irish Whiskey", "Price": 6 },
+                        { "Type": "Apple Cider", "Price": 4 }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "Taste of India",
+            "establishmentIdentifier": "tasteOfIndia",
+            "establishmentType": "Restaurant",
+            "location": {
+                "city": "Sligo",
+                "address": "678 Curry Lane, Sligo, Ireland"
+            },
+            "contact": {
+                "phone": "+353 71 890 1234",
+                "email": "info@tasteofindia.ie",
+                "website": "http://www.tasteofindia.ie"
+            },
+            "foodType": "Indian",
+            "deliveryHours": "10:00 AM - 10:00 PM",
+            "openingHours": "10:00 AM - 11:00 PM",
+            "description": "Authentic Indian cuisine with a variety of spices and flavors.",
+            "banner": "./images/banners/tasteOfIndia.jpg",
+            "tags": ["indian", "spices", "flavors"],
+            "menu": [
+                {
+                    "Starters": [
+                        { "Type": "Samosa", "Price": 5 },
+                        { "Type": "Aloo Tikki", "Price": 6 },
+                        { "Type": "Paneer Tikka", "Price": 8 }
+                    ]
+                },
+                {
+                    "Main Dishes": [
+                        { "Type": "Chicken Tikka Masala", "Price": 14 },
+                        { "Type": "Lamb Rogan Josh", "Price": 16 },
+                        { "Type": "Vegetable Biryani", "Price": 12 }
+                    ]
+                },
+                {
+                    "Sides": [
+                        { "Type": "Naan", "Price": 3 },
+                        { "Type": "Raita", "Price": 2 },
+                        { "Type": "Papadum", "Price": 1 }
+                    ]
+                },
+                {
+                    "Drinks": [
+                        { "Type": "Mango Lassi", "Price": 4 },
+                        { "Type": "Masala Chai", "Price": 3 },
+                        { "Type": "Kingfisher Beer", "Price": 5 }
+                    ]
+                }
+            ]
+        }
+    ]
+}
