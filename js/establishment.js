@@ -72,6 +72,7 @@ function createAccordion(item, container) {
         foodGroups2.forEach(food => {
 
             //Create container for each item 
+            const container = document.createElement('div');
             const itemContainer = document.createElement('div');
             const buttonContainer = document.createElement('div');
             const accordionBodyItem = document.createElement('p');
@@ -80,11 +81,14 @@ function createAccordion(item, container) {
             const accordionBodyItemCount = document.createElement('p');
             const accordionBodyRemoveButton = document.createElement('button');
 
+            //Container
+            container.setAttribute('class','container');
+
             //Item Container styling
-            itemContainer.setAttribute('class', 'row d-flex border border-2 border-secondary rounded-1 p-2 m-2 border-opacity-10')
+            itemContainer.setAttribute('class', 'row d-flex justify-content-between border border-2 border-secondary rounded-1 p-2 m-2 border-opacity-10')
 
             //Button Container styling 
-            buttonContainer.setAttribute('class', 'd-flex');
+            buttonContainer.setAttribute('class', 'd-flex justify-content-end');
 
             //Get the values from the object
             accordionBodyItem.textContent = food.Type;
@@ -116,27 +120,29 @@ function createAccordion(item, container) {
             accordionBodyRemoveButton.textContent = "-";
 
             //Append all containers to the item
-            const dividingContainer1 = document.createElement('div');
+            const elementContainer1 = document.createElement('div');
             const elementContainer2 = document.createElement('div');
             const elementContainer3 = document.createElement('div');
 
-            dividingContainer1.setAttribute('class', 'col-6 d-flex align-items-center');
-            dividingContainer1.appendChild(accordionBodyItem);
-            itemContainer.appendChild(dividingContainer1);
+            elementContainer1.setAttribute('class', 'col-sm-10 col-md-6 align-items-center text-left');
+            elementContainer1.appendChild(accordionBodyItem);
+            itemContainer.appendChild(elementContainer1);
 
-            elementContainer2.setAttribute('class', 'col-3 d-flex align-items-center');
+            elementContainer2.setAttribute('class', 'col-sm-2 col-md-2 align-items-center text-sm-left text-md-center');
             elementContainer2.appendChild(accordionBodyItemPrice);
             itemContainer.appendChild(elementContainer2);
 
-            elementContainer3.setAttribute('class', 'col-3 d-flex align-items-center');
+            elementContainer3.setAttribute('class', 'col-md-4 align-items-center justify-content-end');
             buttonContainer.appendChild(accordionBodyAddButton);
             buttonContainer.appendChild(accordionBodyItemCount);
             buttonContainer.appendChild(accordionBodyRemoveButton);
             elementContainer3.appendChild(buttonContainer);
+            
             itemContainer.appendChild(elementContainer3);
+            container.appendChild(itemContainer);
 
             //Finally append the item container to accordion body
-            accordionBody.appendChild(itemContainer);
+            accordionBody.appendChild(container);
         })
 
         //Append all of the elements to the accordion container
@@ -166,7 +172,7 @@ function createActionMenu(element) {
     container.setAttribute('class', 'container');
 
     //row
-    rowContainer.setAttribute('class', 'row align-items-center');
+    rowContainer.setAttribute('class', 'row align-items-center justify-content-center');
 
     //button
     removeAllButton.setAttribute('type', 'button');
@@ -184,15 +190,15 @@ function createActionMenu(element) {
     priceCount.setAttribute('id', 'itemsPrice');
     priceCount.textContent = '0';
 
-    elementContainer1.setAttribute('class', 'col-8 d-flex align-items-center');
+    elementContainer1.setAttribute('class', 'col-8');
     elementContainer1.appendChild(removeAllButton);
     rowContainer.appendChild(elementContainer1);
 
-    elementContainer2.setAttribute('class', 'col-2 d-flex align-items-center');
+    elementContainer2.setAttribute('class', 'col-2');
     elementContainer2.appendChild(itemCount);
     rowContainer.appendChild(elementContainer2);
 
-    elementContainer3.setAttribute('class', 'col-2 d-flex align-items-center');
+    elementContainer3.setAttribute('class', 'col-2');
     elementContainer3.appendChild(priceCount);
     rowContainer.appendChild(elementContainer3);
 
