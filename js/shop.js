@@ -68,8 +68,4 @@ document.addEventListener('DOMContentLoaded', () => {
         // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
         // main.appendChild(errorMessage);
     });
-
-    console.log(document.getElementById('itemCount-Clam Chowder'));
-    console.log(document.getElementById('Clam Chowder-add-btn'));
-    console.log(document.getElementById('search'));
 })
