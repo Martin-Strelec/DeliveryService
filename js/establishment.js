@@ -1,16 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    localStorage.setItem('cart', JSON.stringify([]));
     document.querySelector('#cartCount').innerHTML = localStorage.getItem('count');
     const selected = JSON.parse(localStorage.getItem('selectedEstablishment'));
-    const menu = document.getElementById('selection');
+    const menuSelect = document.getElementById('selection');
     const content = document.getElementById('content');
 
     //Setting title
     const title = document.querySelector('title');
     title.innerHTML = (`${selected.establishmentName}`);
 
-    createAccordion(selected, menu);
-    createActionMenu(menu)
+    createAccordion(selected, menuSelect);
+    createActionMenu(menuSelect, selected)
     createContent(selected, content);
     updateValues();
 
@@ -95,7 +94,7 @@ function createAccordion(item, container) {
 
             accordionBodyItemCount.setAttribute('id', `${food.Type}-count`);
             accordionBodyItemCount.setAttribute('class', 'mx-3');
-            accordionBodyItemCount.textContent = "0";
+            accordionBodyItemCount.textContent = '0';
 
             //Set attributes for the BodyButton
             accordionBodyAddButton.setAttribute('type', 'button');
@@ -104,7 +103,6 @@ function createAccordion(item, container) {
             accordionBodyAddButton.addEventListener('click', () => {
                 addToTempBasket(food, accordionBodyItemCount);
                 updateValues();
-
             })
             accordionBodyAddButton.textContent = "+";
 
@@ -113,8 +111,7 @@ function createAccordion(item, container) {
             accordionBodyRemoveButton.setAttribute('id', `${food.Type}-remove-btn`);
             accordionBodyRemoveButton.addEventListener('click', () => {
                 removeFromTempBasket(food, accordionBodyItemCount);
-                updateValues(accordionBodyItemCount);
-                document.querySelector('#cartCount').innerHTML = localStorage.getItem('count');
+                updateValues();
             })
             accordionBodyRemoveButton.textContent = "-";
 
@@ -214,12 +211,9 @@ function createActionMenu(element) {
     //Checkout button
     checkoutButton.setAttribute('type', 'button');
     checkoutButton.setAttribute('class', 'btn btn-primary');
-    checkoutButton.setAttribute('href', './checkout.html');
+    checkoutButton.setAttribute('href', './cart.html');
     checkoutButton.setAttribute('id', 'checkout-action-btn');
-    checkoutButton.addEventListener('click', () => {
-
-    });
-    checkoutButton.textContent = 'Checkout';
+    checkoutButton.textContent = 'Go to Cart 🛒';
 
     itemCount.setAttribute('id', 'itemsCount');
     itemCount.textContent = '0';
@@ -273,7 +267,6 @@ function addToTempBasket(food, element) {
     }
 
     //console.log(updatedFood);
-    updateValues();
     element.textContent = updatedFood.count;
     localStorage.setItem('cart', JSON.stringify(currentCart));
 }
@@ -293,7 +286,6 @@ function removeFromTempBasket(food, element) {
         }
         localStorage.setItem('cart', JSON.stringify(currentCart));
     }
-    updateValues();
 }
 function updateValues() {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -301,11 +293,14 @@ function updateValues() {
     var tempCount = 0;
     const itemsCount = document.querySelector(`#itemsCount`);
     const itemsPrice = document.querySelector(`#itemsPrice`);
-    const cartCount = document.querySelector('#cartCount');
     const allItemsCount = document.querySelectorAll('[id$="-count"]');
 
     if (cart.length !== 0) {
         cart.forEach(item => {
+            const itemCount = document.getElementById(`${item.Type}-count`);
+            if (itemCount !== null) {
+                itemCount.textContent = `${item.count === null ? '0' : item.count}`;
+            }
             actionMenuVisible(true);
             tempPrice += item.count * item.Price;
             tempCount += item.count;
@@ -323,8 +318,7 @@ function updateValues() {
     //cartCount.innerHTML = tempCount === 0 ? '' : tempCount;
     itemsCount.textContent = tempCount === 0 ? '' : `Items: ${tempCount}`;
     itemsPrice.textContent = tempPrice === 0 ? '' : `Price: ${tempPrice}$`;
-    localStorage.setItem('count', tempCount === 0 ? '' : `${tempCount}`);
-    localStorage.setItem('cost', tempPrice === 0 ? '' : `${tempCount}`);
+    updateCartCount();
 }
 function actionMenuVisible(state) {
     const menu = document.querySelectorAll('[id$=action-btn]');
@@ -336,4 +330,13 @@ function actionMenuVisible(state) {
             button.setAttribute('hidden','true');
         }
     })
+}
+function updateCartCount() {
+    const cartCount = document.querySelector('#cartCount');
+    var total = 0;
+    cartItems = JSON.parse(localStorage.getItem('cart'));
+    cartItems.forEach(item => {
+        total += item.count;
+    });
+    cartCount.textContent = `${total}`;
 }
