@@ -1,8 +1,6 @@
-
-
-// Use fetch to get data from the API
 document.addEventListener('DOMContentLoaded', () => {
     fetchData('./json/data.json');
+    updateCartCount();
 })
 function fetchData(path) {
     const main = document.getElementById('shopDisplay');
@@ -60,6 +58,11 @@ function createCard(item, element) {
     cardButton.setAttribute('href','./establishment.html')
     cardButton.setAttribute('class', 'btn btn-primary');
     cardButton.addEventListener('click', () => {
+        const current = JSON.parse(localStorage.getItem('selectedEstablishment'));
+        //console.log(current);   
+        if (current.establishmentName !== item.establishmentName) {
+            localStorage.setItem('cart',JSON.stringify([]));
+        }
         localStorage.setItem('selectedEstablishment',JSON.stringify(item));
     })
     cardButton.textContent = 'View Menu';
@@ -72,4 +75,13 @@ function createCard(item, element) {
     cardBody.appendChild(cardText);
     cardBody.appendChild(cardButton);
     element.appendChild(card);
+}
+function updateCartCount() {
+    const cartCount = document.querySelector('#cartCount');
+    var total = 0;
+    cartItems = JSON.parse(localStorage.getItem('cart'));
+    cartItems.forEach(item => {
+        total += item.count;
+    });
+    cartCount.textContent = `${total}`;
 }
