@@ -1,0 +1,28 @@
+{
+    "users": [
+        {
+            "id": 0,
+            "uName": "Johny123",
+            "pwd": "12345",
+            "firstName": "John",
+            "lastName": "Caper",
+            "email": "johny123@email.com",
+            "phone": "+353 232565898",
+            "country": "Ireland",
+            "address": "something, something, Sligo",
+            "eircode": "F91 8562"
+        },
+        {
+            "id": 1,
+            "uName": "Johny256",
+            "pwd": "jakdka",
+            "firstName": "John",
+            "lastName": "Caper",
+            "email": "johny1234@email.com",
+            "phone": "2302232023",
+            "country": "Ireland",
+            "address": "something, something, Sligo",
+            "eircode": "F91 8562"
+        }
+    ]
+}
