@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetchData('./json/data.json');
-    updateCartCount();
+    updateValues();
 })
 function fetchData(path) {
     const main = document.getElementById('shopDisplay');
@@ -76,12 +76,23 @@ function createCard(item, element) {
     cardBody.appendChild(cardButton);
     element.appendChild(card);
 }
-function updateCartCount() {
-    const cartCount = document.querySelector('#cartCount');
+function updateValues() {
+    const cartCount = document.getElementById('cartCount');
+    const currentUserIcon = document.getElementById('currentUser');
+
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(currentUser);
+
+    displayUser(currentUser, currentUserIcon);
+
     var total = 0;
-    cartItems = JSON.parse(localStorage.getItem('cart'));
-    cartItems.forEach(item => {
+    cart.forEach(item => {
         total += item.count;
     });
     cartCount.textContent = `${total}`;
+}
+function displayUser(user, element) {
+    element.setAttribute('class','bg-primary rounded-3 p-1 ms-1 text-white small');
+    element.textContent = `${user.uName}`;
 }
