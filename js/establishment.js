@@ -289,11 +289,16 @@ function removeFromTempBasket(food, element) {
 }
 function updateValues() {
     const cart = JSON.parse(localStorage.getItem('cart'));
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    const itemsCount = document.getElementById('itemsCount');
+    const itemsPrice = document.getElementById('itemsPrice');
+    const currentUserIcon = document.getElementById('currentUser');
+
+    const allItemsCount = document.querySelectorAll('[id$="-count"]');
+
     var tempPrice = 0;
     var tempCount = 0;
-    const itemsCount = document.querySelector(`#itemsCount`);
-    const itemsPrice = document.querySelector(`#itemsPrice`);
-    const allItemsCount = document.querySelectorAll('[id$="-count"]');
 
     if (cart.length !== 0) {
         cart.forEach(item => {
@@ -319,6 +324,7 @@ function updateValues() {
     itemsCount.textContent = tempCount === 0 ? '' : `Items: ${tempCount}`;
     itemsPrice.textContent = tempPrice === 0 ? '' : `Price: ${tempPrice}$`;
     updateCartCount();
+    displayUser(currentUser, currentUserIcon);
 }
 function actionMenuVisible(state) {
     const menu = document.querySelectorAll('[id$=action-btn]');
@@ -339,4 +345,8 @@ function updateCartCount() {
         total += item.count;
     });
     cartCount.textContent = `${total}`;
+}
+function displayUser(user, element) {
+    element.setAttribute('class','bg-primary rounded-3 p-1 ms-1 text-white small');
+    element.textContent = `${user.uName}`;
 }
