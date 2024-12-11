@@ -1,153 +1,321 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Website for registering and overviewing information of Clubs and Societies maintained by Atlantic Technological University Sligo">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Website for registering and overviewing information of Clubs and Societies maintained by Atlantic Technological University Sligo"
+    />
     <title>User Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<body>
+  <body>
+    <script src="./js/redirect.js"></script>
+    <!--Navbar-->
     <nav class="navbar navbar-expand-md bg-body-tertiary">
-        <div class="container-md d-flex">
-            <div class="order-lg-1 order-md-2 d-flex">
-                <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <p>Here comes the logo</p>
-            </div>
-            <div class="d-flex order-md-3">
-                <!--UserIcon-->
-                <a class="nav-link active mx-2" aria-current="user-page" href="user.html">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        class="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                        <path fill-rule="evenodd"
-                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                    </svg>
-                </a>
-                <!--Basket Icon-->
-                <div>
-                  <a class="nav-link" href="./cart.html">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                          class="bi bi-cart-fill" viewBox="0 0 16 16">
-                          <path
-                              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                      </svg>
-                      <span id="cartCount" class="rounded-circle px-2">0</span>
-                  </a>
-                  
+      <div class="container-fluid">
+        <div class="col-md-3 order-lg-1 order-md-2 d-flex">
+          <button
+            class="navbar-toggler mx-2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <p>Here</p>
+        </div>
+        <div class="d-flex order-md-3 align-items-center">
+          <div class="container">
+            <!--UserIcon-->
+            <a class="nav-link" href="#">
+              <div class="container col d-flex align-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  class="bi bi-person-circle"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                  />
+                </svg>
+                <span
+                  id="currentUser"
+                  class="bg-primary rounded-3 p-1 ms-1 text-white small"
+                ></span>
               </div>
-            </div>
-            <div class="collapse navbar-collapse justify-content-end order-md-2" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="shop.html">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"  href="aboutus.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html" >Contact</a>
-                    </li>
-                    <!-- Just as a reminder
+            </a>
+          </div>
+          <!--Basket Icon-->
+          <div class="container col-6">
+            <a
+              class="nav-link active"
+              aria-current="user page"
+              href="./cart.html"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                class="bi bi-cart-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
+                />
+              </svg>
+              <span id="cartCount" class="">0</span>
+            </a>
+          </div>
+        </div>
+        <div
+          class="col-md-6 collapse navbar-collapse justify-content-end order-md-2"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="shop.html">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="aboutus.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <!-- Just as a reminder
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </li>
                     -->
-                </ul>
-            </div>
+          </ul>
         </div>
+      </div>
     </nav>
-    <div class="container d-flex mt-5">
-        <form class="row g-3 needs-validation" novalidate>
-            <div class="col-md-4">
-              <label for="validationCustom01" class="form-label">First name</label>
-              <input type="text" class="form-control" id="validationCustom01" value="John" required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-            </div>
-            <div class="col-md-4">
-              <label for="validationCustom02" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="validationCustom02" value="Doe" required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-            </div>
-            <div class="col-md-4">
-              <label for="validationCustomUsername" class="form-label">Username</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                  Please choose a username.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label for="validationCustom03" class="form-label">City</label>
-              <input type="text" class="form-control" id="validationCustom03" required>
-              <div class="invalid-feedback">
-                Please provide a valid city.
-              </div>
-            </div>
-            <div class="col-md-3">
-              <label for="validationCustom04" class="form-label">State</label>
-              <select class="form-select" id="validationCustom04" required>
-                <option selected disabled value="">Choose...</option>
-                <option>...</option>
-              </select>
-              <div class="invalid-feedback">
-                Please select a valid state.
-              </div>
-            </div>
-            <div class="col-md-3">
-              <label for="validationCustom05" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="validationCustom05" required>
-              <div class="invalid-feedback">
-                Please provide a valid zip.
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                  Agree to terms and conditions
-                </label>
-                <div class="invalid-feedback">
-                  You must agree before submitting.
-                </div>
-              </div>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-primary" type="submit">Change details</button>
-            </div>
-          </form>
-    
-    </div>
-    
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-        </ul>
-        <p class="text-center text-muted">© 2024 Company, Inc</p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
 
+    <div
+      class="container row mx-auto w-75 mt-5 bg-secondary-subtle p-3 rounded-3"
+      id="userDetails"
+    >
+      <div class="col-12">
+        <form class="row g-3 was-validated">
+          <fieldset class="my-3 rounded-3 bg-light p-3">
+            <legend>User Information</legend>
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <label for="uName" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="uNameInput"
+                    pattern="{3,}"
+                    disabled
+                    required
+                  />
+                  <div class="invalid-feedback">Enter a Username!</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">@</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="emailInput"
+                    disabled
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Enter your email!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="passwordInput"
+                  pattern="[a-zA-Z0-9]{4,}"
+                  disabled
+                  required
+                />
+                <div class="invalid-feedback">Enter new Password!</div>
+              </div>
+            </div>
+          </fieldset>
+          <!--Personal Details-->
+          <fieldset class="my-3 bg-light rounded-3 p-3">
+            <legend>Personal Details</legend>
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstNameInput"
+                  disabled
+                  required
+                />
+                <div class="invalid-feedback">Enter your First Name!</div>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastNameInput"
+                  disabled
+                  required
+                />
+                <div class="invalid-feedback">Enter your Last Name!</div>
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone Number</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">📞</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phoneInput"
+                    pattern="[+][0-9]{3}\s[0-9]{9}"
+                    disabled
+                    required
+                  />
+                  <div class="invalid-feedback">
+                   Enter your phone number!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label for="address" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="addressInput"
+                  disabled
+                  required
+                />
+                <div class="invalid-feedback">Enter your address!</div>
+              </div>
+              <div class="col-md-6">
+                <label for="country" class="form-label">Country</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="countryInput"
+                  disabled
+                  required
+                />
+                <div class="invalid-feedback">Enter your country!</div>
+              </div>
+              <div class="col-md-6">
+                <label for="eircode" class="form-label">EirCode</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eircodeInput"
+                  pattern="[F][0-9]{2}\s[A-Z0-9]{4}"
+                  disabled
+                  required
+                />
+                <div class="invalid-feedback">Enter the eircode!</div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="col-4" id="formSubmitButton" hidden>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-12" id="actionMenu">
+        <div class="row g-3">
+          <div
+            class="col-12 d-flex justify-content-between justify-content-md-start"
+          >
+            <div id="actionButtons">
+              <button class="btn btn-primary me-3" id="updateButton">
+                Change Details
+              </button>
+              <button class="btn btn-danger" id="logoutButton">
+                Log out
+              </button>
+            </div>
+            <div id="checkPassword" hidden>
+              <div class="row g-3">
+                <div class="col-12">
+                  <form id="changeDetailsForm" class="needs-validation">
+                    <input
+                      type="password"
+                      id="changeDetailsField"
+                      class="form-control"
+                      placeholder="Enter your Password"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Wrong Password!
+                    </div>
+                  </form>
+                </div>
+                <div class="col">
+                  <button class="btn btn-primary" id="submitButton">
+                    Submit
+                  </button>
+                  <button class="btn btn-danger" id="cancelButton">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">Features</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">FAQs</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link px-2 text-muted">About</a>
+        </li>
+      </ul>
+      <p class="text-center text-muted">© 2024 Company, Inc</p>
+    </footer>
+    <script src="./js/user.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
