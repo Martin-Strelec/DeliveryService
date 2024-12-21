@@ -1,9 +1,9 @@
 {
     "cards": [
         {
-            "cardHolderName": "John Caper",
-            "cardNumber": "4565 1212 1245 1252",
-            "cardSCC": "353"
+            "nameOnTheCard": "John Caper",
+            "cardNumber": "4565121212451252",
+            "SCC": "353"
         }
     ]
 }
