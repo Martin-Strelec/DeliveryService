@@ -1,72 +1,107 @@
+/*
+*Local storage -> used variables
+*
+* cart
+* cartCount
+* cartTotal
+* users
+* currentUser
+* selectedEstablishment
+*/
+
+// localStorage.clear();
+// console.log(localStorage);
+
 document.addEventListener('DOMContentLoaded', () => {
-    fetchUser('./json/users.json'); 
-    fetchCards('./json/cards.json');
+    if (localStorage.length === 0) {
+        localStorage.setItem('cartCount', '0');
+        localStorage.setItem('cartTotal', '0');
+        localStorage.setItem('cart', '[]');
+        localStorage.setItem('users', '');
+        localStorage.setItem('currentUser', '');
+        localStorage.setItem('selectedEstablishment', '');
+        fetchUser('./json/users.json');
+        fetchCreditCards('./json/cards.json');
+    }
+    console.log(localStorage.getItem('cards'));
+    console.log(localStorage.getItem('cart'));
+    console.log(localStorage.getItem('cartCount'));
+    console.log(localStorage.getItem('users'));
     updateValues();
 })
+
+
 function fetchUser(path) {
     fetch(path)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(data => {
-        // Begin accessing JSON data here
-        console.log(data.users[0]);
-        localStorage.setItem('users',JSON.stringify(data.users));
-        //localStorage.setItem('currentUser',JSON.stringify(data.users[0]));
-        localStorage.setItem('currentUser',"");
-        console.log(localStorage.getItem('defaultUser'));
-    })
-    .catch(function (error) {
-        // Handle any errors from the fetch operation
-        // const errorMessage = document.createElement('marquee');
-        // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
-        // main.appendChild(errorMessage);
-    });
+        .then(function (response) {
+            return response.json();
+        })
+        .then(data => {
+            // Begin accessing JSON data here
+            localStorage.setItem('users', JSON.stringify(data.users));
+            localStorage.setItem('currentUser', "");
+        })
+        .catch(function (error) {
+            // Handle any errors from the fetch operation
+            // const errorMessage = document.createElement('marquee');
+            // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
+            // main.appendChild(errorMessage);
+        });
 }
-function fetchCards (path) {
+function fetchCreditCards(path) {
     fetch(path)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(data => {
-        // Begin accessing JSON data here
-        localStorage.setItem('cards',JSON.stringify(`${data.cards}`));
-    })
-    .catch(function (error) {
-        // Handle any errors from the fetch operation
-        // const errorMessage = document.createElement('marquee');
-        // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
-        // main.appendChild(errorMessage);
-    });
+        .then(function (response) {
+            return response.json();
+        })
+        .then(data => {
+            // Begin accessing JSON data here
+            localStorage.setItem('cards', JSON.stringify(data.cards));
+        })
+        .catch(function (error) {
+            // Handle any errors from the fetch operation
+            // const errorMessage = document.createElement('marquee');
+            // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
+            // main.appendChild(errorMessage);
+        });
 }
 function updateValues() {
-    const cartCount = document.getElementById('cartCount');
-    const cartTotalPrice = document.getElementById('totalPrice');
-    const cartTotalCount = document.getElementById('totalCount');
+    //Local storage return values
+    const getCart = localStorage.getItem('cart');
+
+
+    //Selecting elements on the page
     const currentUserIcon = document.getElementById('currentUser');
+    const cartCount = document.getElementById('cartCount');
 
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var tempTotal = 0;
+    var tempCount = 0;
 
-    var totalCost = 0;
-    var totalCount = 0;
+    if (getCart !== '[]') {
+        const getCart = JSON.parse(localStorage.getItem('cart'));
 
-    displayUser(currentUser, currentUserIcon);
+        getCart.forEach(item => {
+            const itemCount = document.getElementById(`${item.Type}-count`);
+            if (itemCount !== null) {
+                itemCount.textContent = `${item.count}`;
+            }
 
-    if (cart.length !== 0) {
-        cart.forEach(item => {
-            totalCost += item.Price * item.count;
-            totalCount += item.count;
+            tempTotal += item.count * item.Price;
+            tempCount += item.count;
         })
-        cartCount.textContent = `${totalCount}`;
-        cartTotalPrice.textContent = `Price: ${totalCost}$`;
-        cartTotalCount.textContent = `Items: ${totalCount}`;
     }
     else {
-        cartCount.textContent = '0';
+        tempTotal = 0;
+        tempCount = 0;
     }
+
+    cartCount.innerHTML = tempCount;
+
+    displayUser(currentUserIcon);
 }
-function displayUser(user, element) {
-    element.setAttribute('class','bg-primary rounded-3 p-1 ms-1 text-white small');
-    element.textContent = `${user.uName}`;
+function displayUser(element) {
+    if (localStorage.getItem('currentUser') !== '') {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+        element.textContent = `${currentUser.uName}`;
+    }
 }

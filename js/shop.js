@@ -1,26 +1,31 @@
+console.log(localStorage.getItem('cards'));
+console.log(localStorage.getItem('cart'));
+console.log(localStorage.getItem('cartCount'));
+console.log(localStorage.getItem('users'));
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchData('./json/data.json');
     updateValues();
 })
-function fetchData(path) {
+async function fetchData(path) {
     const main = document.getElementById('shopDisplay');
-    
+
     fetch(path)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(data => {
-        // // Begin accessing JSON data here
-        data.items.forEach(item => {
-            createCard(item,main);
+        .then(function (response) {
+            return response.json();
+        })
+        .then(data => {
+            // // Begin accessing JSON data here
+            data.items.forEach(item => {
+                createCard(item, main);
+            });
+        })
+        .catch(function (error) {
+            // Handle any errors from the fetch operation
+            // const errorMessage = document.createElement('marquee');
+            // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
+            // main.appendChild(errorMessage);
         });
-    })
-    .catch(function (error) {
-        // Handle any errors from the fetch operation
-        // const errorMessage = document.createElement('marquee');
-        // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
-        // main.appendChild(errorMessage);
-    });
 }
 function createCard(item, element) {
     //Creating card
@@ -34,7 +39,7 @@ function createCard(item, element) {
 
     //Card banner
     const banner = document.createElement('img');
-    banner.setAttribute('src',`${item.banner}`);
+    banner.setAttribute('src', `${item.banner}`);
     banner.setAttribute('class', 'card-img-top');
 
     //Card heading
@@ -55,15 +60,17 @@ function createCard(item, element) {
     //Card button
     const cardButton = document.createElement('a');
     cardButton.setAttribute('type', 'button');
-    cardButton.setAttribute('href','./establishment.html')
+    cardButton.setAttribute('href', './establishment.html')
     cardButton.setAttribute('class', 'btn btn-primary');
-    cardButton.addEventListener('click', () => {
-        const current = JSON.parse(localStorage.getItem('selectedEstablishment'));
-        //console.log(current);   
-        if (current.establishmentName !== item.establishmentName) {
-            localStorage.setItem('cart',JSON.stringify([]));
+    cardButton.addEventListener('click', () => { 
+        const current = localStorage.getItem('selectedEstablishment');
+        if (current !== item.establishmentName && current !== '') {
+            localStorage.setItem('cart', JSON.stringify([]));
+            localStorage.setItem('selectedEstablishment', JSON.stringify(item));
         }
-        localStorage.setItem('selectedEstablishment',JSON.stringify(item));
+        else {
+            localStorage.setItem('selectedEstablishment', JSON.stringify(item));
+        } 
     })
     cardButton.textContent = 'View Menu';
 
@@ -77,22 +84,23 @@ function createCard(item, element) {
     element.appendChild(card);
 }
 function updateValues() {
+    //LocalStorage return values
+    const getCartCount = localStorage.getItem('cartCount');
+
+    //Selecting elements on the page
     const cartCount = document.getElementById('cartCount');
     const currentUserIcon = document.getElementById('currentUser');
 
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(currentUser);
+    displayUser(currentUserIcon);
 
-    displayUser(currentUser, currentUserIcon);
-
-    var total = 0;
-    cart.forEach(item => {
-        total += item.count;
-    });
-    cartCount.textContent = `${total}`;
+    cartCount.textContent = `${getCartCount}`;
 }
-function displayUser(user, element) {
-    element.setAttribute('class','bg-primary rounded-3 p-1 ms-1 text-white small');
-    element.textContent = `${user.uName}`;
+function displayUser(element) {
+    if (localStorage.getItem('currentUser') !== '') {
+        //JSON parsing
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+        element.textContent = `${currentUser.uName}`;
+    }
 }

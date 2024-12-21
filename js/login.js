@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   init();
-  
   updateValues();
 });
 
@@ -49,31 +48,42 @@ function loginUser() {
   });
 }
 function updateValues() {
-  const cartCount = document.getElementById("cartCount");
-  const currentUserIcon = document.getElementById("currentUser");
+  //Local storage return values
+  const getCart = localStorage.getItem('cart');
 
-  const cart = JSON.parse(localStorage.getItem("cart"));
+  //Selecting elements on the page
+  const currentUserIcon = document.getElementById('currentUser');
+  const cartCount = document.getElementById('cartCount');
 
-  var totalCount = 0;
+  var tempTotal = 0;
+  var tempCount = 0;
+
+  if (getCart !== '[]') {
+      const getCart = JSON.parse(localStorage.getItem('cart'));
+
+      getCart.forEach(item => {
+          const itemCount = document.getElementById(`${item.Type}-count`);
+          if (itemCount !== null) {
+              itemCount.textContent = `${item.count}`;
+          }
+
+          tempTotal += item.count * item.Price;
+          tempCount += item.count;
+      })
+  }
+  else {
+      tempTotal = 0;
+      tempCount = 0;
+  }
+
+  cartCount.innerHTML = tempCount;
 
   displayUser(currentUserIcon);
-
-  if (cart.length !== 0) {
-    cart.forEach((item) => {
-      totalCount += item.count;
-    });
-    cartCount.textContent = `${totalCount}`;
-  } else {
-    cartCount.textContent = "0";
-  }
 }
 function displayUser(element) {
-  if (localStorage.getItem("currentUser") !== "") {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    element.setAttribute(
-      "class",
-      "bg-primary rounded-3 p-1 ms-1 text-white small"
-    );
-    element.textContent = `${currentUser.uName.substring(0, 3)}...`;
+  if (localStorage.getItem('currentUser') !== '') {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+      element.textContent = `${currentUser.uName}`;
   }
 }

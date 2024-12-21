@@ -129,24 +129,20 @@ function displayItems(cart, element) {
     homeButton.setAttribute("type", "button");
     homeButton.setAttribute("href", "./index.html");
     homeButton.setAttribute("class", "btn btn-primary");
-    homeButton.addEventListener("click", () => {
-      localStorage.setItem("selectedEstablishment", JSON.stringify(item));
-    });
     homeButton.textContent = "Go home";
     buttonContainer.appendChild(homeButton);
 
     shopButton.setAttribute("type", "button");
     shopButton.setAttribute("href", "./shop.html");
     shopButton.setAttribute("class", "btn btn-primary");
-    shopButton.addEventListener("click", () => {
-      localStorage.setItem("selectedEstablishment", JSON.stringify(item));
-    });
     shopButton.textContent = "Back to Shops";
     buttonContainer.appendChild(shopButton);
 
     vstackContainer.appendChild(empty);
     vstackContainer.appendChild(buttonContainer);
     element.appendChild(vstackContainer);
+
+    console.log(localStorage.getItem('cart'));
   }
   updateValues();
 }
@@ -237,23 +233,25 @@ function addToCart(food) {
   localStorage.setItem("cart", JSON.stringify(currentCart));
 }
 function subtractFromCart(food) {
-  currentCart = JSON.parse(localStorage.getItem("cart"));
-  if (currentCart !== 0) {
-    for (var i = 0; i < currentCart.length; i++) {
-      if (food.Type === currentCart[i].Type) {
-        currentCart[i].count -= 1;
-        if (currentCart[i].count === 0) {
-          currentCart.splice(i, 1);
-        }
+  const getCart = localStorage.getItem('cart');
+
+  if (getCart !== '[]') {
+    tempCart = JSON.parse(getCart);
+    const index = tempCart.map((t) => t.Type).indexOf(food.Type);
+
+    if (index !== -1) {
+      tempCart[index].count -= 1;
+      if (tempCart[index].count == 0) {
+        tempCart.splice(index, 1);
       }
     }
-    localStorage.setItem("cart", JSON.stringify(currentCart));
+    console.log(tempCart);
+    localStorage.setItem('cart', JSON.stringify(tempCart));
   }
 }
 function removeFromCart(food) {
   currentCart = JSON.parse(localStorage.getItem("cart"));
   if (currentCart !== 0) {
-    console.log(currentCart);
     const index = currentCart.map((t) => t.Type).indexOf(food.Type);
     console.log(index);
     if (index !== -1) {
@@ -264,32 +262,49 @@ function removeFromCart(food) {
   localStorage.setItem("cart", JSON.stringify(currentCart));
 }
 function updateValues() {
-  const cartCount = document.getElementById("cartCount");
   const cartTotalPrice = document.getElementById("totalPrice");
   const cartTotalCount = document.getElementById("totalCount");
+  //Local storage return values
+  const getCart = localStorage.getItem('cart');
+
+  //Selecting elements on the page
   const currentUserIcon = document.getElementById('currentUser');
+  const cartCount = document.getElementById('cartCount');
 
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  var tempTotal = 0;
+  var tempCount = 0;
 
-  var totalCost = 0;
-  var totalCount = 0;
+  if (getCart !== '[]') {
+    const getCart = JSON.parse(localStorage.getItem('cart'));
 
-    displayUser(currentUser, currentUserIcon);
+    getCart.forEach(item => {
+      const itemCount = document.getElementById(`${item.Type}-count`);
+      if (itemCount !== null) {
+        itemCount.textContent = `${item.count}`;
+      }
 
-  if (cart.length !== 0) {
-    cart.forEach((item) => {
-      totalCost += item.Price * item.count;
-      totalCount += item.count;
-    });
-    cartCount.textContent = `${totalCount}`;
-    cartTotalPrice.textContent = `Price: ${totalCost}$`;
-    cartTotalCount.textContent = `Items: ${totalCount}`;
-  } else {
-    cartCount.textContent = "0";
+      tempTotal += item.count * item.Price;
+      tempCount += item.count;
+    })
+    cartTotalCount.textContent = tempCount === 0 ? '' : `Items: ${tempCount}`;
+    cartTotalPrice.textContent = tempTotal === 0 ? '' : `Price: ${tempTotal}$`;
   }
+  else {
+    tempTotal = 0;
+    tempCount = 0;
+  }
+
+  localStorage.setItem('cartCount', `${tempCount}`);
+  localStorage.setItem('cartTotal', `${tempTotal}`);
+
+  cartCount.innerHTML = tempCount;
+
+  displayUser(currentUserIcon);
 }
-function displayUser(user, element) {
-    element.setAttribute('class','bg-primary rounded-3 p-1 ms-1 text-white small');
-    element.textContent = `${user.uName}`;
+function displayUser(element) {
+  if (localStorage.getItem('currentUser') !== '') {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+    element.textContent = `${currentUser.uName}`;
+}
 }

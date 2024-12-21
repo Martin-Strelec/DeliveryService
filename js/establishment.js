@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#cartCount').innerHTML = localStorage.getItem('count');
     const selected = JSON.parse(localStorage.getItem('selectedEstablishment'));
     const menuSelect = document.getElementById('selection');
     const content = document.getElementById('content');
@@ -7,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     //Setting title
     const title = document.querySelector('title');
     title.innerHTML = (`${selected.establishmentName}`);
+
+    console.log(localStorage.getItem('cart'));
+    console.log(localStorage.getItem('cartCount'));
 
     createAccordion(selected, menuSelect);
     createActionMenu(menuSelect, selected)
@@ -101,7 +103,7 @@ function createAccordion(item, container) {
             accordionBodyAddButton.setAttribute('class', 'btn btn-info');
             accordionBodyAddButton.setAttribute('id', `${food.Type}-add-btn`);
             accordionBodyAddButton.addEventListener('click', () => {
-                addToTempBasket(food, accordionBodyItemCount);
+                addToCart(food);
                 updateValues();
             })
             accordionBodyAddButton.textContent = "+";
@@ -110,7 +112,7 @@ function createAccordion(item, container) {
             accordionBodyRemoveButton.setAttribute('class', 'btn btn-danger');
             accordionBodyRemoveButton.setAttribute('id', `${food.Type}-remove-btn`);
             accordionBodyRemoveButton.addEventListener('click', () => {
-                removeFromTempBasket(food, accordionBodyItemCount);
+                removeFromCart(food);
                 updateValues();
             })
             accordionBodyRemoveButton.textContent = "-";
@@ -158,19 +160,19 @@ function createContent(establishment, element) {
     const description = document.createElement('p');
 
     //heading
-    heading.setAttribute('class','mb-3');
+    heading.setAttribute('class', 'mb-3');
     heading.textContent = `${establishment.establishmentName}`;
 
     //delivery hours
-    deliveryHours.setAttribute('class','fw-light');
+    deliveryHours.setAttribute('class', 'fw-light');
     deliveryHours.textContent = `Delivery Hours: ${establishment.deliveryHours}`;
 
     //opening hours
-    openingHours.setAttribute('class','fw-light');
+    openingHours.setAttribute('class', 'fw-light');
     openingHours.textContent = `Opening hours: ${establishment.openingHours}`;
 
     //description
-    description.setAttribute('class','fw-light');
+    description.setAttribute('class', 'fw-light');
     description.textContent = `${establishment.description}`;
 
     //Appending to element
@@ -194,7 +196,8 @@ function createActionMenu(element) {
 
     //container
     container.setAttribute('class', 'container');
-
+    container.setAttribute('hidden', true);
+    container.setAttribute('id', 'actionMenu');
     //row
     rowContainer.setAttribute('class', 'row align-items-center justify-content-center');
 
@@ -204,7 +207,7 @@ function createActionMenu(element) {
     removeAllButton.setAttribute('id', 'discardAll-action-btn');
     removeAllButton.setAttribute('value', 'Discard All');
     removeAllButton.addEventListener('click', () => {
-        localStorage.setItem('cart', JSON.stringify([]));
+        localStorage.setItem('cart', '[]');
         updateValues();
     })
 
@@ -234,81 +237,92 @@ function createActionMenu(element) {
     container.appendChild(rowContainer);
     element.appendChild(container);
 }
-function addToTempBasket(food, element) {
-    var currentCart = [];
-    var isInside = false;
-    var updatedFood;
 
-    currentCart = JSON.parse(localStorage.getItem('cart'));
-    if (currentCart.length === 0) {
-        const foodCount = {
-            count: 1
-        }
-        updatedFood = { ...food, ...foodCount }
-        currentCart = [updatedFood];
-        
+function addToCart(food) {
+    //LocalStorage return values
+    
+    getCart = localStorage.getItem('cart');
+    console.log(getCart);
+
+    //Temp variables
+    var tempTotal = parseInt(localStorage.getItem('cartTotal'));
+    var tempCount = parseInt(localStorage.getItem('cartCount'));
+    var tempCart = [];
+    var updatedFood;
+    const spreadedFood = {
+        count: 1
+    }
+
+    if (getCart === '[]') {
+        updatedFood = { ...food, ...spreadedFood }
+        tempTotal = updatedFood.Price;
+        tempCount = 1;
+        tempCart.push(updatedFood);
     }
     else {
-        currentCart.forEach(item => {
-            if (food.Type === item.Type) {
-                isInside = true;
-                item.count += 1;
-                updatedFood = item;
-            }
-        })
-        if (!isInside) {
-            foodCount = {
-                count: 1
-            }
-            updatedFood = { ...food, ...foodCount }
-            console.log(updatedFood);
-            currentCart.push(updatedFood);
+        tempCart = JSON.parse(getCart);
+        const index = tempCart.map((t) => t.Type).indexOf(food.Type);
+
+        if (index !== -1) {
+            tempCart[index].count += 1;
+        }
+        else {
+            updatedFood = { ...food, ...spreadedFood };
+            tempCart.push(updatedFood);
         }
     }
 
-    //console.log(updatedFood);
-    element.textContent = updatedFood.count;
-    localStorage.setItem('cart', JSON.stringify(currentCart));
-}
-function removeFromTempBasket(food, element) {
-    var currentCart = [];
+    localStorage.setItem('cart', JSON.stringify(tempCart));
 
-    currentCart = JSON.parse(localStorage.getItem('cart'));
-    if (currentCart !== 0) {
-        for (var i = 0; i < currentCart.length; i++) {
-            if (food.Type === currentCart[i].Type) {
-                currentCart[i].count -= 1;
-                element.textContent = `${currentCart[i].count}`;
-                if (currentCart[i].count === 0) {
-                    currentCart.splice(i, 1);
-                }
+}
+function removeFromCart(food) {
+    const getCart = localStorage.getItem('cart');
+
+    if (getCart !== '[]') {
+        tempCart = JSON.parse(getCart);
+        const index = tempCart.map((t) => t.Type).indexOf(food.Type);
+
+        if (index !== -1) {
+            tempCart[index].count -= 1;
+            if (tempCart[index].count == 0) {
+                tempCart.splice(index,1);
             }
         }
-        localStorage.setItem('cart', JSON.stringify(currentCart));
+        localStorage.setItem('cart', JSON.stringify(tempCart));
     }
 }
 function updateValues() {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    //Local storage return values
+    const getCart = localStorage.getItem('cart');
 
+    //Selecting elements on the page
     const itemsCount = document.getElementById('itemsCount');
     const itemsPrice = document.getElementById('itemsPrice');
     const currentUserIcon = document.getElementById('currentUser');
+    const cartCount = document.getElementById('cartCount');
 
     const allItemsCount = document.querySelectorAll('[id$="-count"]');
 
-    var tempPrice = 0;
+    var tempTotal = 0;
     var tempCount = 0;
 
-    if (cart.length !== 0) {
-        cart.forEach(item => {
+    if (getCart !== '[]') {
+        const getCart = JSON.parse(localStorage.getItem('cart'));
+        actionMenuVisible(true);
+
+        getCart.forEach(item => {
             const itemCount = document.getElementById(`${item.Type}-count`);
             if (itemCount !== null) {
-                itemCount.textContent = `${item.count === null ? '0' : item.count}`;
+                itemCount.textContent = `${item.count}`;
             }
-            actionMenuVisible(true);
-            tempPrice += item.count * item.Price;
+
+            console.log(item.count * item.Price);
+            console.log(parseInt(item.count * item.Price));
+
+            tempTotal += item.count * item.Price;
             tempCount += item.count;
+            console.log(tempTotal);
+            console.log(tempCount);
         })
     }
     else {
@@ -316,37 +330,31 @@ function updateValues() {
         allItemsCount.forEach(item => {
             item.textContent = '0';
         })
-        tempPrice = 0;
+        tempTotal = 0;
         tempCount = 0;
     }
 
-    //cartCount.innerHTML = tempCount === 0 ? '' : tempCount;
+    localStorage.setItem('cartCount', `${tempCount}`);
+    localStorage.setItem('cartTotal', `${tempTotal}`);
+
+    cartCount.innerHTML = tempCount === 0 ? '0' : tempCount;
     itemsCount.textContent = tempCount === 0 ? '' : `Items: ${tempCount}`;
-    itemsPrice.textContent = tempPrice === 0 ? '' : `Price: ${tempPrice}$`;
-    updateCartCount();
+    itemsPrice.textContent = tempTotal === 0 ? '' : `Price: ${tempTotal}$`;
     displayUser(currentUser, currentUserIcon);
 }
 function actionMenuVisible(state) {
-    const menu = document.querySelectorAll('[id$=action-btn]');
-    menu.forEach(button => {
-        if (state) {
-            button.removeAttribute('hidden');
-        }
-        else {
-            button.setAttribute('hidden','true');
-        }
-    })
-}
-function updateCartCount() {
-    const cartCount = document.querySelector('#cartCount');
-    var total = 0;
-    cartItems = JSON.parse(localStorage.getItem('cart'));
-    cartItems.forEach(item => {
-        total += item.count;
-    });
-    cartCount.textContent = `${total}`;
+    const menu = document.getElementById('actionMenu');
+    if (state) {
+        menu.removeAttribute('hidden');
+    }
+    else {
+        menu.setAttribute('hidden', 'true');
+    }
 }
 function displayUser(user, element) {
-    element.setAttribute('class','bg-primary rounded-3 p-1 ms-1 text-white small');
-    element.textContent = `${user.uName}`;
+    if (localStorage.getItem('currentUser') !== '') {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+        element.textContent = `${user.uName}`;
+    }
 }
