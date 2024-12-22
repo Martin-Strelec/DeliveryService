@@ -355,6 +355,6 @@ function displayUser(user, element) {
     if (localStorage.getItem('currentUser') !== '') {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
-        element.textContent = `${user.uName}`;
+        element.textContent = `${currentUser.uName}`;
     }
 }
