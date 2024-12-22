@@ -7,7 +7,7 @@
             "firstName": "John",
             "lastName": "Caper",
             "email": "johny123@email.com",
-            "phone": "+353 232565898",
+            "phone": "+353232565898",
             "country": "Ireland",
             "address": "something, something, Sligo",
             "eircode": "F91 8562"
@@ -19,7 +19,7 @@
             "firstName": "John",
             "lastName": "Caper",
             "email": "johny1234@email.com",
-            "phone": "2302232023",
+            "phone": "+353234562562",
             "country": "Ireland",
             "address": "something, something, Sligo",
             "eircode": "F91 8562"
