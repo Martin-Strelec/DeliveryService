@@ -19,20 +19,27 @@ function displayElements() {
 
         deliveryDetails.innerHTML = '';
 
-        container.setAttribute('class', 'container bg-secondary p-3 rounded col-9');
+        container.setAttribute('class', 'container text-center justify-content-center bg-secondary p-3 rounded col-9');
 
         const heading = document.createElement('p');
         const loginButton = document.createElement('a');
+        const registerButton = document.createElement('a');
 
         heading.innerHTML = 'Log In / Register to continue'
 
         loginButton.setAttribute("type", "button");
         loginButton.setAttribute("href", "./login.html");
-        loginButton.setAttribute("class", "btn btn-primary");
-        loginButton.textContent = "Login / Register";
+        loginButton.setAttribute("class", "btn btn-primary m-1");
+        loginButton.textContent = "Login";
+
+        registerButton.setAttribute("type", "button");
+        registerButton.setAttribute("href", "./register.html");
+        registerButton.setAttribute("class", "btn btn-primary m-1");
+        registerButton.textContent = "Register";
 
         container.appendChild(heading);
         container.appendChild(loginButton);
+        container.appendChild(registerButton);
         deliveryDetails.appendChild(container);
     }
     else {
@@ -72,14 +79,18 @@ function displayElements() {
     })
 }
 function initSubmitButton() {
-    const cards = JSON.parse(localStorage.getItem('cards'));
-
     const submitOrderButton = document.getElementById('submitOrderButton');
-    const submitAlert = document.getElementById('submitAlert');
 
     submitOrderButton.addEventListener("click", (e) => {
         e.preventDefault();
-        const nameOnTheCard = document.getElementById("nameOnTheCardInput").value;
+        cardValidation();
+    });
+}
+function cardValidation() {
+    const cards = JSON.parse(localStorage.getItem('cards'));
+    const submitAlert = document.getElementById('submitAlert');
+
+    const nameOnTheCard = document.getElementById("nameOnTheCardInput").value;
         const cardNumber = document.getElementById("cardNumberInput").value;
         const scc = document.getElementById("sccInput").value;
         const index = cards.map((u) => u.cardNumber).indexOf(cardNumber);
@@ -101,7 +112,6 @@ function initSubmitButton() {
             submitAlert.innerHTML = "Card Does not Exist!";
             submitAlert.removeAttribute('hidden');
         }
-    });
 }
 function updateValues() {
     //Local storage return values
