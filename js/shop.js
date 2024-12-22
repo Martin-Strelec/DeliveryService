@@ -4,8 +4,8 @@ console.log(localStorage.getItem('cartCount'));
 console.log(localStorage.getItem('users'));
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchData('./json/data.json');
     updateValues();
+    fetchData('./json/data.json');
 })
 async function fetchData(path) {
     const main = document.getElementById('shopDisplay');
@@ -84,22 +84,41 @@ function createCard(item, element) {
     element.appendChild(card);
 }
 function updateValues() {
-    //LocalStorage return values
-    const getCartCount = localStorage.getItem('cartCount');
+    //Local storage return values
+    const getCart = localStorage.getItem('cart');
 
     //Selecting elements on the page
-    const cartCount = document.getElementById('cartCount');
     const currentUserIcon = document.getElementById('currentUser');
+    const cartCount = document.getElementById('cartCount');
+
+    var tempTotal = 0;
+    var tempCount = 0;
+
+    if (getCart !== '[]') {
+        const getCart = JSON.parse(localStorage.getItem('cart'));
+
+        getCart.forEach(item => {
+            const itemCount = document.getElementById(`${item.Type}-count`);
+            if (itemCount !== null) {
+                itemCount.textContent = `${item.count}`;
+            }
+
+            tempTotal += item.count * item.Price;
+            tempCount += item.count;
+        })
+    }
+    else {
+        tempTotal = 0;
+        tempCount = 0;
+    }
+
+    cartCount.innerHTML = tempCount;
 
     displayUser(currentUserIcon);
-
-    cartCount.textContent = `${getCartCount}`;
 }
 function displayUser(element) {
     if (localStorage.getItem('currentUser') !== '') {
-        //JSON parsing
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
         element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
         element.textContent = `${currentUser.uName}`;
     }
