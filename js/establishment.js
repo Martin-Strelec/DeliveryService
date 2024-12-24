@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    //Returning values from localStorage
     const selected = JSON.parse(localStorage.getItem('selectedEstablishment'));
+    //Returning html elements
     const menuSelect = document.getElementById('selection');
     const content = document.getElementById('content');
 
@@ -7,26 +9,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = document.querySelector('title');
     title.innerHTML = (`${selected.establishmentName}`);
 
-    console.log(localStorage.getItem('cart'));
-    console.log(localStorage.getItem('cartCount'));
-
+    //Creates the accordion element based on the menu of selected establishment 
     createAccordion(selected, menuSelect);
+    //Creates action menu that allows the user to continue to cart or to discard all items 
     createActionMenu(menuSelect, selected)
+    //Creates information section containing info about the establishment
     createContent(selected, content);
     updateValues();
-
-    // console.log(document.getElementById('itemCount-Clam Chowder'));
-    // console.log(document.getElementById('Clam Chowder-add-btn'));
-    // console.log(document.getElementById('search'));
 })
 
 function createAccordion(item, container) {
 
     //Create container for the accordion
     const accordionContainer = document.createElement('div');
+    const heading = document.createElement('h1');
+
+    //Heading 
+    heading.setAttribute('class','text-center');
+    heading.textContent = `${item.establishmentName} Menu`;
 
     //Set attributes for the accodion container
-    accordionContainer.classList.add('accordion');
+    accordionContainer.setAttribute('class','accordion');
     accordionContainer.setAttribute('id', 'accordionParent');
 
     //Add all the sections included in the data.json file
@@ -82,7 +85,7 @@ function createAccordion(item, container) {
             const accordionBodyRemoveButton = document.createElement('button');
 
             //Container
-            container.setAttribute('class', 'container');
+            container.setAttribute('class', 'container ');
 
             //Item Container styling
             itemContainer.setAttribute('class', 'row d-flex justify-content-between border border-2 border-secondary rounded-1 p-2 m-2 border-opacity-10')
@@ -150,41 +153,122 @@ function createAccordion(item, container) {
         accordionItem.appendChild(accordionCollapse);
         accordionContainer.appendChild(accordionItem);
     }
+    container.appendChild(heading);
     container.appendChild(accordionContainer);
 }
 function createContent(establishment, element) {
+    //Defining main container 
     const container = document.createElement('div');
-    const heading = document.createElement('h1');
-    const deliveryHours = document.createElement('p');
-    const openingHours = document.createElement('p');
-    const description = document.createElement('p');
 
-    //heading
-    heading.setAttribute('class', 'mb-3');
-    heading.textContent = `${establishment.establishmentName}`;
+    //Defining generalInfoContainer
+    const generalInfoContainer = document.createElement('div');
+    const generalInfoHeading = document.createElement('h2');
+    const deliveryHoursContainer = document.createElement('div');
+    const deliveryHoursHeading = document.createElement('h4');
+    const deliveryHoursContent = document.createElement('p');
+    const openingHoursContainer = document.createElement('div');
+    const openingHoursHeading = document.createElement('h4');
+    const openingHoursContent = document.createElement('p');
+    const descriptionContainer = document.createElement('div');
+    const descriptionContent = document.createElement('p');
+    const contactContainer = document.createElement('div');
+    const contactHeading = document.createElement('h4');
+    const contactPhone = document.createElement('p');
+    const contactEmail = document.createElement('p');
+
+    //Defining locationInfo container
+    const locationContainer = document.createElement('div');
+    const locationHeading = document.createElement('h2');
+    const locationAddressContainer = document.createElement('div');
+    const locationAddressHeading = document.createElement('h4');
+    const locationAddressContent = document.createElement('p');
+    const mapContainer = document.createElement('div');
+    
+    
+    //Main container 
+    container.setAttribute('class','row justify-content-center p-3')
+
+    //General Info container
+    generalInfoContainer.setAttribute('class','row bg-light rounded-3 m-3 p-3');
+
+    //Generail info heading
+    generalInfoHeading.innerHTML = 'About us';
+    generalInfoHeading.setAttribute('class','text-center py-2');
 
     //delivery hours
-    deliveryHours.setAttribute('class', 'fw-light');
-    deliveryHours.textContent = `Delivery Hours: ${establishment.deliveryHours}`;
+    deliveryHoursContainer.setAttribute('class','container col-lg-6');
+    deliveryHoursHeading.innerHTML = 'Delivery Hours';
+    deliveryHoursHeading.setAttribute('class','fw-normal');
+    deliveryHoursContent.setAttribute('class', 'fw-light');
+    deliveryHoursContent.innerHTML = `${establishment.deliveryHours}`;
+    deliveryHoursContainer.appendChild(deliveryHoursHeading);
+    deliveryHoursContainer.appendChild(deliveryHoursContent);
 
     //opening hours
-    openingHours.setAttribute('class', 'fw-light');
-    openingHours.textContent = `Opening hours: ${establishment.openingHours}`;
+    openingHoursContainer.setAttribute('class','container col-lg-6');
+    openingHoursHeading.innerHTML = 'Opening Hours';
+    openingHoursHeading.setAttribute('class','fw-normal');
+    openingHoursContent.setAttribute('class', 'fw-light');
+    openingHoursContent.textContent = `${establishment.openingHours}`;
+    openingHoursContainer.appendChild(openingHoursHeading);
+    openingHoursContainer.appendChild(openingHoursContent);
 
     //description
-    description.setAttribute('class', 'fw-light');
-    description.textContent = `${establishment.description}`;
+    descriptionContainer.setAttribute('class','container');
+    descriptionContent.setAttribute('class', 'fw-light');
+    descriptionContent.textContent = `${establishment.description}`;
+    descriptionContainer.appendChild(descriptionContent);
 
-    //Appending to element
-    container.appendChild(heading);
+    //Contact
+    contactContainer.setAttribute('class','container');
+    contactHeading.innerHTML = 'Contact';
+    contactHeading.setAttribute('class','fw-normal');
+    contactPhone.setAttribute('class', 'fw-light');
+    contactPhone.textContent = `📞 ${establishment.contact.phone}`;
+    contactEmail.setAttribute('class','fw-light');
+    contactEmail.textContent = `📧 ${establishment.contact.email}`;
+    contactContainer.appendChild(contactHeading);
+    contactContainer.appendChild(contactPhone);
+    contactContainer.appendChild(contactEmail);
 
-    container.appendChild(deliveryHours);
-    container.appendChild(openingHours);
-    container.appendChild(description);
+    //Appending to General Info
+    generalInfoContainer.appendChild(generalInfoHeading);
+    generalInfoContainer.appendChild(descriptionContainer);
+    generalInfoContainer.appendChild(deliveryHoursContainer);
+    generalInfoContainer.appendChild(openingHoursContainer);
+    generalInfoContainer.appendChild(contactContainer);
+    
+
+
+    //location
+    //Container
+    locationContainer.setAttribute('class','row p-3 m-3 rounded-3 bg-light');
+    //Heading 
+    locationHeading.innerHTML = 'Where to find us 📌';
+    locationHeading.setAttribute('class','text-center py-2');
+    //Address
+    locationAddressContainer.setAttribute('class','col-md-6');
+    locationAddressHeading.innerHTML = 'Address';
+    locationAddressHeading.setAttribute('class','fw-normal');
+    locationAddressContent.setAttribute('class','fw-light');
+    locationAddressContent.innerHTML = `${establishment.location.address}`;
+    locationAddressContainer.appendChild(locationAddressHeading);
+    locationAddressContainer.appendChild(locationAddressContent);
+    //Map
+    mapContainer.setAttribute('class', 'col-md-6 ratio ratio-4x3');
+    mapContainer.innerHTML = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3201.0769569355966!2d-8.477088620709557!3d54.271604068860775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485ee9b5677caee9%3A0xa00c7a997317380!2sSligo%2C%20Irsko!5e0!3m2!1scs!2scz!4v1734970892856!5m2!1scs!2scz" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    //Appending to container
+    locationContainer.appendChild(locationHeading);
+    locationContainer.appendChild(locationAddressContainer);
+    locationContainer.appendChild(mapContainer);
+
+    container.appendChild(generalInfoContainer);
+    container.appendChild(locationContainer);
 
     element.appendChild(container);
 }
 function createActionMenu(element) {
+    //Defining elements
     const container = document.createElement('div');
     const rowContainer = document.createElement('div');
     const elementContainer1 = document.createElement('div');
@@ -195,7 +279,7 @@ function createActionMenu(element) {
     const priceCount = document.createElement('p');
 
     //container
-    container.setAttribute('class', 'container');
+    container.setAttribute('class', 'container p-1');
     container.setAttribute('hidden', true);
     container.setAttribute('id', 'actionMenu');
     //row
@@ -203,7 +287,7 @@ function createActionMenu(element) {
 
     //Discard all button
     removeAllButton.setAttribute('type', 'button');
-    removeAllButton.setAttribute('class', 'btn btn-primary');
+    removeAllButton.setAttribute('class', 'btn btn-light');
     removeAllButton.setAttribute('id', 'discardAll-action-btn');
     removeAllButton.setAttribute('value', 'Discard All');
     removeAllButton.addEventListener('click', () => {
@@ -213,7 +297,7 @@ function createActionMenu(element) {
 
     //Checkout button
     checkoutButton.setAttribute('type', 'button');
-    checkoutButton.setAttribute('class', 'btn btn-primary');
+    checkoutButton.setAttribute('class', 'btn btn-light');
     checkoutButton.setAttribute('href', './cart.html');
     checkoutButton.setAttribute('id', 'checkout-action-btn');
     checkoutButton.textContent = 'Go to Cart 🛒';
@@ -224,25 +308,26 @@ function createActionMenu(element) {
     priceCount.setAttribute('id', 'itemsPrice');
     priceCount.textContent = '0';
 
+    //Total count appending 
     elementContainer1.setAttribute('class', 'd-flex mt-2 justify-content-between');
     elementContainer1.appendChild(itemCount);
     elementContainer1.appendChild(priceCount);
     rowContainer.appendChild(elementContainer1);
 
+    //Buttons appending 
     elementContainer2.setAttribute('class', 'col-md-12 my-2 d-flex justify-content-md-between justify-content-center gap-2');
     elementContainer2.appendChild(removeAllButton);
     elementContainer2.appendChild(checkoutButton);
     rowContainer.appendChild(elementContainer2);
 
+    //Appending to the main container
     container.appendChild(rowContainer);
     element.appendChild(container);
 }
-
 function addToCart(food) {
+    //Same functionality as the function in the checkout.js
     //LocalStorage return values
-    
     getCart = localStorage.getItem('cart');
-    console.log(getCart);
 
     //Temp variables
     var tempTotal = parseInt(localStorage.getItem('cartTotal'));
@@ -276,6 +361,7 @@ function addToCart(food) {
 
 }
 function removeFromCart(food) {
+    //Same functionality as the function in the checkout.js
     const getCart = localStorage.getItem('cart');
 
     if (getCart !== '[]') {
@@ -285,7 +371,8 @@ function removeFromCart(food) {
         if (index !== -1) {
             tempCart[index].count -= 1;
             if (tempCart[index].count == 0) {
-                tempCart.splice(index,1);
+                document.getElementById(`${food.Type}-count`).innerHTML = '0';
+                tempCart.splice(index, 1);
             }
         }
         localStorage.setItem('cart', JSON.stringify(tempCart));
@@ -316,13 +403,8 @@ function updateValues() {
                 itemCount.textContent = `${item.count}`;
             }
 
-            console.log(item.count * item.Price);
-            console.log(parseInt(item.count * item.Price));
-
             tempTotal += item.count * item.Price;
             tempCount += item.count;
-            console.log(tempTotal);
-            console.log(tempCount);
         })
     }
     else {
@@ -351,10 +433,10 @@ function actionMenuVisible(state) {
         menu.setAttribute('hidden', 'true');
     }
 }
-function displayUser(user, element) {
+function displayUser(element) {
     if (localStorage.getItem('currentUser') !== '') {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+        element.setAttribute('class', 'bg-light rounded-3 p-1 ms-1 small');
         element.textContent = `${currentUser.uName}`;
     }
 }

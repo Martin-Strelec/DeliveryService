@@ -1,33 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-  init();
+  //Initializing eventListeners for the buttons
+  initButtons();
+  //Validates the login of the user
+  loginUser();
+  //Updating values
   updateValues();
 });
-
-function init() {
-  initButtons();
-  loginUser();
-}
-
 function initButtons() {
-  const forgotPasswordButton = document.getElementById('forgotPassword');
   const registerButton = document.getElementById('register');
 
-  forgotPasswordButton.addEventListener('click', () => {
-
-  })
   registerButton.addEventListener('click', () => {
     window.location = './register.html';
   })
 }
-
 function loginUser() {
+  //Returning values from local storage
   const users = JSON.parse(localStorage.getItem("users"));
 
-  const login = document.getElementById("loginForm");
+  //Returning html elements
   const loginButton = document.getElementById("login");
-
   const loginAlert = document.getElementById('loginAlert');
 
+  //Whole login validation
   loginButton.addEventListener("click", (e) => {
     e.preventDefault();
     const email = document.getElementById("inputEmail").value;
@@ -83,7 +77,7 @@ function updateValues() {
 function displayUser(element) {
   if (localStorage.getItem('currentUser') !== '') {
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+      element.setAttribute('class', 'bg-light rounded-3 p-1 ms-1 small');
       element.textContent = `${currentUser.uName}`;
   }
 }

@@ -1,33 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
+  //Returning html elements 
   const orderDetails = document.getElementById("orderDetails");
+  
+  //Returning localStorage items
   const cart = JSON.parse(localStorage.getItem("cart"));
 
   displayItems(cart, orderDetails);
   updateValues();
 });
 function displayItems(cart, element) {
+  //Resetting the whole container
   element.innerHTML = "";
 
+  //Creating vertical container
   const vstackContainer = document.createElement("div");
-  vstackContainer.setAttribute("class", "vstack gap-3 p-5 rounded-3 bg-body-secondary");
+  vstackContainer.setAttribute("class", "vstack gap-3 p-5 bg-dark rounded-3");
 
+  //Checking the cart
   if (cart.length !== 0) {
     const selectedEstablishment = JSON.parse(
       localStorage.getItem("selectedEstablishment")
     );
     const heading = document.createElement("h1");
-    heading.setAttribute("class", " pb-2 text-center fw-light border-bottom");
+    heading.setAttribute("class", " pb-2 text-center fw-light border-bottom border-primary");
     heading.textContent = `${selectedEstablishment.establishmentName} (${selectedEstablishment.establishmentType})`;
 
     element.appendChild(heading);
 
     cart.forEach((item) => {
+      //Defining all of the dynamically created elements
+      //Containers
       const itemContainer = document.createElement("div");
       const buttonContainer = document.createElement("div");
       const itemNameContainer = document.createElement("div");
       const itemAttributesContainer = document.createElement("div");
       const itemPriceContainer = document.createElement("div");
 
+      //Other elements
       const itemName = document.createElement("p");
       const itemAttributes = document.createElement("p");
       const itemPrice = document.createElement("p");
@@ -111,77 +120,94 @@ function displayItems(cart, element) {
     element.appendChild(vstackContainer);
     actionMenu(element);
   } else {
+    //Defining button container
     const buttonContainer = document.createElement("div");
 
+    //Defining heading
     const empty = document.createElement("h1");
 
+    //Defining buttons
     const homeButton = document.createElement("a");
     const shopButton = document.createElement("a");
 
+    //Adding attributes to the heading element
     empty.setAttribute("class", "text-center");
     empty.textContent = "Empty Cart";
 
+    //Adding Attribtues to the buttonContainer
     buttonContainer.setAttribute(
       "class",
       "d-flex justify-content-center gap-3"
     );
 
+    //Adding attributes to the homeButton
     homeButton.setAttribute("type", "button");
     homeButton.setAttribute("href", "./index.html");
     homeButton.setAttribute("class", "btn btn-primary");
     homeButton.textContent = "Go home";
     buttonContainer.appendChild(homeButton);
 
+    //Adding attribtues to the shopButton
     shopButton.setAttribute("type", "button");
     shopButton.setAttribute("href", "./shop.html");
     shopButton.setAttribute("class", "btn btn-primary");
     shopButton.textContent = "Back to Shops";
     buttonContainer.appendChild(shopButton);
 
+    //Appending all to the vstack container
     vstackContainer.appendChild(empty);
     vstackContainer.appendChild(buttonContainer);
     element.appendChild(vstackContainer);
 
-    console.log(localStorage.getItem('cart'));
+    // console.log(localStorage.getItem('cart'));
   }
   updateValues();
 }
 function actionMenu(element) {
+  //Defining containers
   const container = document.createElement("div");
   const buttonContainer = document.createElement("div");
   const totalTextContainer = document.createElement("div");
 
+  //Defining buttons
   const checkoutButton = document.createElement("a");
   const discardAllButton = document.createElement("button");
 
+  //Setting attributes for the main container
   container.setAttribute(
     "class",
-    "row mt-3 gap-3 gap-sm-0 justify-content-center border-top pt-3"
+    "row mt-3 gap-3 gap-sm-0 justify-content-center border-top border-primary pt-3"
   );
 
+  //Setting attributes for the button container
   buttonContainer.setAttribute(
     "class",
     "col-sm-8 gap-2 d-flex align-items-center justify-content-start"
   );
 
+  //Setting attributes for the totalText container
   totalTextContainer.setAttribute(
     "class",
     "col-sm-4 gap-3 d-flex justify-content-end"
   );
 
+  //Defining other elements
   const totalPrice = document.createElement("p");
   const totalCount = document.createElement("p");
 
+  //Adding attributes to checkoutButton
   checkoutButton.setAttribute("type", "button");
   checkoutButton.setAttribute("href", "./checkout.html");
   checkoutButton.setAttribute("class", "btn btn-primary");
   checkoutButton.textContent = "Checkout";
   buttonContainer.appendChild(checkoutButton);
 
+  //Adding attributes to discardAllButton
   discardAllButton.setAttribute("type", "button");
   discardAllButton.setAttribute("class", "btn btn-primary");
   discardAllButton.setAttribute("id", "discardAll-action-btn");
   discardAllButton.textContent = "Discard All";
+  //Event Listener
   discardAllButton.addEventListener("click", () => {
     localStorage.setItem("cart", JSON.stringify([]));
     updateValues();
@@ -189,27 +215,33 @@ function actionMenu(element) {
   });
   buttonContainer.appendChild(discardAllButton);
 
+  //Adding attributes to the totalCount
   totalCount.setAttribute("id", "totalCount");
   totalTextContainer.appendChild(totalCount);
 
+  //Adding attributes to the PriceCount
   totalPrice.setAttribute("id", "totalPrice");
   totalTextContainer.appendChild(totalPrice);
 
+  //Appending to the main container
   container.appendChild(buttonContainer);
   container.appendChild(totalTextContainer);
   element.appendChild(container);
 }
 function addToCart(food) {
+  //Temp variables
   var currentCart = [];
   var isInside = false;
   var updatedFood;
 
+  //Parsing from localStorage
   currentCart = JSON.parse(localStorage.getItem("cart"));
   if (currentCart.length === 0) {
     const foodCount = {
       count: 1,
     };
 
+    //Food object is extended by foodCount attribute
     updatedFood = { ...food, ...foodCount };
     currentCart = [updatedFood];
   } else {
@@ -224,19 +256,22 @@ function addToCart(food) {
       foodCount = {
         count: 1,
       };
+      //Food object is extended by foodCount attribute
       updatedFood = { ...food, ...foodCount };
-      console.log(updatedFood);
       currentCart.push(updatedFood);
     }
   }
-  //console.log(updatedFood);
+  //Updating the cart in localStorage
   localStorage.setItem("cart", JSON.stringify(currentCart));
 }
 function subtractFromCart(food) {
+  //Returning values from localStorage
   const getCart = localStorage.getItem('cart');
 
+  //Checking the cart
   if (getCart !== '[]') {
     tempCart = JSON.parse(getCart);
+    //Mapping Type attribute in the tempCart array to check if the food.Type is already in the cart
     const index = tempCart.map((t) => t.Type).indexOf(food.Type);
 
     if (index !== -1) {
@@ -245,13 +280,17 @@ function subtractFromCart(food) {
         tempCart.splice(index, 1);
       }
     }
-    console.log(tempCart);
+    //Updating the cart
     localStorage.setItem('cart', JSON.stringify(tempCart));
   }
 }
 function removeFromCart(food) {
+  //Parsing from the local storage
   currentCart = JSON.parse(localStorage.getItem("cart"));
+  
+  //Checking the cart
   if (currentCart !== 0) {
+    //Mapping Type attribute in the tempCart array to check if the food.Type is already in the cart
     const index = currentCart.map((t) => t.Type).indexOf(food.Type);
     console.log(index);
     if (index !== -1) {
@@ -259,18 +298,20 @@ function removeFromCart(food) {
       console.log(currentCart);
     }
   }
+  //Updating the cart
   localStorage.setItem("cart", JSON.stringify(currentCart));
 }
 function updateValues() {
-  const cartTotalPrice = document.getElementById("totalPrice");
-  const cartTotalCount = document.getElementById("totalCount");
   //Local storage return values
   const getCart = localStorage.getItem('cart');
 
   //Selecting elements on the page
   const currentUserIcon = document.getElementById('currentUser');
   const cartCount = document.getElementById('cartCount');
+  const cartTotalPrice = document.getElementById("totalPrice");
+  const cartTotalCount = document.getElementById("totalCount");
 
+  //Temp variables
   var tempTotal = 0;
   var tempCount = 0;
 
@@ -294,9 +335,11 @@ function updateValues() {
     tempCount = 0;
   }
 
+  //Updating the cartCount and cartTotal
   localStorage.setItem('cartCount', `${tempCount}`);
   localStorage.setItem('cartTotal', `${tempTotal}`);
 
+  //Updating the cartCount in the navbar
   cartCount.innerHTML = tempCount;
 
   displayUser(currentUserIcon);
@@ -304,7 +347,7 @@ function updateValues() {
 function displayUser(element) {
   if (localStorage.getItem('currentUser') !== '') {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+    element.setAttribute('class', 'bg-light rounded-3 p-1 ms-1 small');
     element.textContent = `${currentUser.uName}`;
 }
 }

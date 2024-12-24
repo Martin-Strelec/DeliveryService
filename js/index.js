@@ -7,12 +7,15 @@
 * users
 * currentUser
 * selectedEstablishment
+* townFilter 
+*
 */
 
 // localStorage.clear();
 // console.log(localStorage);
 
 document.addEventListener('DOMContentLoaded', () => {
+    //If local storage is empty > define default values
     if (localStorage.length === 0) {
         localStorage.setItem('cartCount', '0');
         localStorage.setItem('cartTotal', '0');
@@ -20,49 +23,32 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('users', '');
         localStorage.setItem('currentUser', '');
         localStorage.setItem('selectedEstablishment', '');
+        localStorage.setItem('cityFilter', '');
         fetchUser('./json/users.json');
         fetchCreditCards('./json/cards.json');
     }
-    console.log(localStorage.getItem('cards'));
-    console.log(localStorage.getItem('cart'));
-    console.log(localStorage.getItem('cartCount'));
-    console.log(localStorage.getItem('users'));
     updateValues();
 })
-
-
-function fetchUser(path) {
-    fetch(path)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(data => {
-            // Begin accessing JSON data here
-            localStorage.setItem('users', JSON.stringify(data.users));
-            localStorage.setItem('currentUser', "");
-        })
-        .catch(function (error) {
-            // Handle any errors from the fetch operation
-            // const errorMessage = document.createElement('marquee');
-            // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
-            // main.appendChild(errorMessage);
-        });
+async function fetchUser(path) {
+    try {
+        const response = await fetch(path); // Await fetch call
+        const jsonData = await response.json(); // Await response parsing
+        data = jsonData.users; // Set global data to fetched data
+        localStorage.setItem('users', JSON.stringify(data.users));
+        localStorage.setItem('currentUser', "");
+    } catch (error) {
+        console.error(`Error fetching establishments: ${error.message}`);
+    }
 }
-function fetchCreditCards(path) {
-    fetch(path)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(data => {
-            // Begin accessing JSON data here
-            localStorage.setItem('cards', JSON.stringify(data.cards));
-        })
-        .catch(function (error) {
-            // Handle any errors from the fetch operation
-            // const errorMessage = document.createElement('marquee');
-            // errorMessage.textContent = `Gah, it's not working! Error: ${error.message}`;
-            // main.appendChild(errorMessage);
-        });
+async function fetchCreditCards(path) {
+    try {
+        const response = await fetch(path); // Await fetch call
+        const jsonData = await response.json(); // Await response parsing
+        data = jsonData.cards; // Set global data to fetched data
+        localStorage.setItem('cards', JSON.stringify(data.cards));
+    } catch (error) {
+        console.error(`Error fetching establishments: ${error.message}`);
+    }
 }
 function updateValues() {
     //Local storage return values
@@ -101,7 +87,7 @@ function updateValues() {
 function displayUser(element) {
     if (localStorage.getItem('currentUser') !== '') {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+        element.setAttribute('class', 'bg-light rounded-3 p-1 ms-1 small');
         element.textContent = `${currentUser.uName}`;
     }
 }

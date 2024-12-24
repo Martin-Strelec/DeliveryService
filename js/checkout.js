@@ -1,20 +1,23 @@
-console.log(JSON.parse(localStorage.getItem('cards')));
-
 document.addEventListener('DOMContentLoaded', () => {
+    //Initialization of the buttons
     initSubmitButton();
+    //Updating values
     updateValues();
+    //Displaying elements based on the cart
     displayElements();
 })
-
 function displayElements() {
-
+    //Returning values from local storage
     const getUser = localStorage.getItem('currentUser');
     const cart = JSON.parse(localStorage.getItem('cart'));
 
+    //Returning html elements from the page
     const deliveryDetails = document.getElementById('deliveryDetails');
     const orderSummaryItems = document.getElementById('orderSummaryItems');
 
+    //Checking active user
     if (getUser === '') {
+        //Prompts the user to login or register
         const container = document.createElement('div');
 
         deliveryDetails.innerHTML = '';
@@ -43,6 +46,7 @@ function displayElements() {
         deliveryDetails.appendChild(container);
     }
     else {
+        //Displays the user's delivery information
         const cardForm = document.getElementById('cardForm');
 
         cardForm.removeAttribute('hidden');
@@ -58,6 +62,7 @@ function displayElements() {
     heading.innerHTML = `${selected.establishmentName}`;
     heading.setAttribute('class', 'border-bottom text-center pb-2');
 
+    //Displaying all of the items in the cart
     cart.forEach(item => {
         const container = document.createElement('div');
         const itemName = document.createElement('p');
@@ -87,6 +92,7 @@ function initSubmitButton() {
     });
 }
 function cardValidation() {
+//Validating the card. If the card is valid, user is moved to different window. If not, the page will throw up errors
     const cards = JSON.parse(localStorage.getItem('cards'));
     const submitAlert = document.getElementById('submitAlert');
 
@@ -124,6 +130,7 @@ function updateValues() {
     const totalCount = document.getElementById('totalCount');
     const totalPrice = document.getElementById('totalPrice');
 
+    //Temp variables
     var tempTotal = 0;
     var tempCount = 0;
 
@@ -156,7 +163,7 @@ function updateValues() {
 function displayUser(element) {
     if (localStorage.getItem('currentUser') !== '') {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        element.setAttribute('class', 'bg-primary rounded-3 p-1 ms-1 text-white small');
+        element.setAttribute('class', 'bg-light rounded-3 p-1 ms-1 small');
         element.textContent = `${currentUser.uName}`;
     }
 }

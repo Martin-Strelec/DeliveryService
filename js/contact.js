@@ -8,7 +8,7 @@ function updateValues() {
     //Selecting elements on the page
     const currentUserIcon = document.getElementById('currentUser');
     const cartCount = document.getElementById('cartCount');
-
+    
     var tempTotal = 0;
     var tempCount = 0;
 
