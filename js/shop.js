@@ -36,6 +36,7 @@ async function createCard(item, element) {
     //Card banner
     const banner = document.createElement('img');
     banner.setAttribute('src', `${item.banner}`);
+    banner.setAttribute('alt',`${item.establishmentName}-illustration photo`);
     banner.setAttribute('class', 'card-img-top');
 
     //Card heading
