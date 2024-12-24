@@ -14,7 +14,7 @@ function displayItems(cart, element) {
 
   //Creating vertical container
   const vstackContainer = document.createElement("div");
-  vstackContainer.setAttribute("class", "vstack gap-3 p-5 bg-dark rounded-3");
+  vstackContainer.setAttribute("class", "vstack gap-3 p-5 bg-light rounded-3");
 
   //Checking the cart
   if (cart.length !== 0) {
@@ -45,7 +45,7 @@ function displayItems(cart, element) {
       const removeButton = document.createElement("button");
 
       //Item container
-      itemContainer.setAttribute("class", "row py-2 bg-light rounded-3 ");
+      itemContainer.setAttribute("class", "row py-2 bg-secondary rounded-3 ");
 
       //Button container
       buttonContainer.setAttribute(
@@ -143,14 +143,14 @@ function displayItems(cart, element) {
     //Adding attributes to the homeButton
     homeButton.setAttribute("type", "button");
     homeButton.setAttribute("href", "./index.html");
-    homeButton.setAttribute("class", "btn btn-primary");
+    homeButton.setAttribute("class", "btn btn-secondary");
     homeButton.textContent = "Go home";
     buttonContainer.appendChild(homeButton);
 
     //Adding attribtues to the shopButton
     shopButton.setAttribute("type", "button");
     shopButton.setAttribute("href", "./shop.html");
-    shopButton.setAttribute("class", "btn btn-primary");
+    shopButton.setAttribute("class", "btn btn-secondary");
     shopButton.textContent = "Back to Shops";
     buttonContainer.appendChild(shopButton);
 
