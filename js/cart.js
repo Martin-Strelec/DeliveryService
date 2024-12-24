@@ -22,7 +22,7 @@ function displayItems(cart, element) {
       localStorage.getItem("selectedEstablishment")
     );
     const heading = document.createElement("h1");
-    heading.setAttribute("class", " pb-2 text-center fw-light border-bottom border-primary");
+    heading.setAttribute("class", " pb-2 text-center fw-light border-bottom border-secondary");
     heading.textContent = `${selectedEstablishment.establishmentName} (${selectedEstablishment.establishmentType})`;
 
     element.appendChild(heading);
@@ -176,7 +176,7 @@ function actionMenu(element) {
   //Setting attributes for the main container
   container.setAttribute(
     "class",
-    "row mt-3 gap-3 gap-sm-0 justify-content-center border-top border-primary pt-3"
+    "row mt-3 gap-3 gap-sm-0 justify-content-center border-top border-secondary pt-3"
   );
 
   //Setting attributes for the button container
@@ -198,13 +198,13 @@ function actionMenu(element) {
   //Adding attributes to checkoutButton
   checkoutButton.setAttribute("type", "button");
   checkoutButton.setAttribute("href", "./checkout.html");
-  checkoutButton.setAttribute("class", "btn btn-primary");
+  checkoutButton.setAttribute("class", "btn btn-secondary");
   checkoutButton.textContent = "Checkout";
   buttonContainer.appendChild(checkoutButton);
 
   //Adding attributes to discardAllButton
   discardAllButton.setAttribute("type", "button");
-  discardAllButton.setAttribute("class", "btn btn-primary");
+  discardAllButton.setAttribute("class", "btn btn-secondary");
   discardAllButton.setAttribute("id", "discardAll-action-btn");
   discardAllButton.textContent = "Discard All";
   //Event Listener
