@@ -34,8 +34,8 @@ async function fetchUser(path) {
         const response = await fetch(path); // Await fetch call
         const jsonData = await response.json(); // Await response parsing
         data = jsonData.users; // Set global data to fetched data
-        localStorage.setItem('users', JSON.stringify(data.users));
-        localStorage.setItem('currentUser', "");
+        localStorage.setItem('users', JSON.stringify(data));
+        localStorage.setItem('currentUser', JSON.stringify(data[0]));
     } catch (error) {
         console.error(`Error fetching establishments: ${error.message}`);
     }
@@ -45,7 +45,7 @@ async function fetchCreditCards(path) {
         const response = await fetch(path); // Await fetch call
         const jsonData = await response.json(); // Await response parsing
         data = jsonData.cards; // Set global data to fetched data
-        localStorage.setItem('cards', JSON.stringify(data.cards));
+        localStorage.setItem('cards', JSON.stringify(data));
     } catch (error) {
         console.error(`Error fetching establishments: ${error.message}`);
     }
