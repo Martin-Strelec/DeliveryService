@@ -5,7 +5,7 @@
             "establishmentIdentifier": "seasideBistro",
             "establishmentType": "Restaurant",
             "location": {
-                "city": "Sligo",
+                "city": "sligo",
                 "address": "123 Oceanview Road, Sligo, Ireland"
             },
             "contact": {
@@ -18,34 +18,416 @@
             "openingHours": "10:00 AM - 10:00 PM",
             "description": "Enjoy fresh seafood with a stunning view of the coastline.",
             "banner": "./images/banners/seasideBistro.jpg",
-            "tags": ["seafood", "coastal", "dining"],
+            "tags": [
+                "seafood",
+                "coastal",
+                "dining"
+            ],
             "menu": [
                 {
                     "Starters": [
-                        { "Type": "Clam Chowder", "Price": 8 },
-                        { "Type": "Grilled Prawns", "Price": 12 },
-                        { "Type": "Crab Cakes", "Price": 10 }
+                        {
+                            "Type": "Clam Chowder",
+                            "Price": 8
+                        },
+                        {
+                            "Type": "Grilled Prawns",
+                            "Price": 12
+                        },
+                        {
+                            "Type": "Crab Cakes",
+                            "Price": 10
+                        }
                     ]
                 },
                 {
                     "Main Dishes": [
-                        { "Type": "Lobster Thermidor", "Price": 25 },
-                        { "Type": "Seared Scallops", "Price": 22 },
-                        { "Type": "Grilled Salmon Fillet", "Price": 20 }
+                        {
+                            "Type": "Lobster Thermidor",
+                            "Price": 25
+                        },
+                        {
+                            "Type": "Seared Scallops",
+                            "Price": 22
+                        },
+                        {
+                            "Type": "Grilled Salmon Fillet",
+                            "Price": 20
+                        }
                     ]
                 },
                 {
                     "Sides": [
-                        { "Type": "Garlic Butter Potatoes", "Price": 5 },
-                        { "Type": "Seaweed Salad", "Price": 4 },
-                        { "Type": "Steamed Vegetables", "Price": 4 }
+                        {
+                            "Type": "Garlic Butter Potatoes",
+                            "Price": 5
+                        },
+                        {
+                            "Type": "Seaweed Salad",
+                            "Price": 4
+                        },
+                        {
+                            "Type": "Steamed Vegetables",
+                            "Price": 4
+                        }
                     ]
                 },
                 {
                     "Drinks": [
-                        { "Type": "Mineral Water", "Price": 0 },
-                        { "Type": "Lemonade", "Price": 3 },
-                        { "Type": "White Wine", "Price": 5 }
+                        {
+                            "Type": "Mineral Water",
+                            "Price": 0
+                        },
+                        {
+                            "Type": "Lemonade",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "White Wine",
+                            "Price": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "Urban Grind Coffeehouse",
+            "establishmentIdentifier": "urbanGrind",
+            "establishmentType": "Café",
+            "location": {
+                "city": "Dublin",
+                "address": "45 Central Plaza, Dublin, Ireland"
+            },
+            "contact": {
+                "phone": "+353 1 234 5678",
+                "email": "hello@urbangrind.ie",
+                "website": "http://www.urbangrind.ie"
+            },
+            "foodType": "Coffee & Snacks",
+            "deliveryHours": "8:00 AM - 6:00 PM",
+            "openingHours": "7:00 AM - 8:00 PM",
+            "description": "A perfect spot for a quick coffee or an afternoon catch-up.",
+            "banner": "./images/banners/urbanGrind.jpg",
+            "tags": [
+                "coffee",
+                "snacks",
+                "café"
+            ],
+            "menu": [
+                {
+                    "Drinks": [
+                        {
+                            "Type": "Espresso",
+                            "Price": 2.5
+                        },
+                        {
+                            "Type": "Cappuccino",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Latte",
+                            "Price": 3.5
+                        }
+                    ]
+                },
+                {
+                    "Pastries": [
+                        {
+                            "Type": "Croissant",
+                            "Price": 2
+                        },
+                        {
+                            "Type": "Blueberry Muffin",
+                            "Price": 2.5
+                        },
+                        {
+                            "Type": "Chocolate Chip Cookie",
+                            "Price": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "Green Grocers",
+            "establishmentIdentifier": "greenGrocers",
+            "establishmentType": "Grocery Store",
+            "location": {
+                "city": "Galway",
+                "address": "78 Fresh Market Lane, Galway, Ireland"
+            },
+            "contact": {
+                "phone": "+353 91 456 7890",
+                "email": "support@greengrocers.ie",
+                "website": "http://www.greengrocers.ie"
+            },
+            "foodType": "Groceries",
+            "deliveryHours": "9:00 AM - 8:00 PM",
+            "openingHours": "8:00 AM - 10:00 PM",
+            "description": "Delivering fresh fruits, vegetables, and pantry essentials to your door.",
+            "banner": "./images/banners/greenGrocers.jpg",
+            "tags": [
+                "groceries",
+                "organic",
+                "fresh"
+            ],
+            "menu": [
+                {
+                    "Fruits & Vegetables": [
+                        {
+                            "Type": "Apples (1kg)",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Bananas (1kg)",
+                            "Price": 2
+                        },
+                        {
+                            "Type": "Carrots (1kg)",
+                            "Price": 1.5
+                        }
+                    ]
+                },
+                {
+                    "Dairy": [
+                        {
+                            "Type": "Milk (1L)",
+                            "Price": 1.2
+                        },
+                        {
+                            "Type": "Cheddar Cheese (200g)",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Butter (250g)",
+                            "Price": 2.5
+                        }
+                    ]
+                },
+                {
+                    "Bakery": [
+                        {
+                            "Type": "Whole Wheat Bread",
+                            "Price": 2
+                        },
+                        {
+                            "Type": "Croissants (Pack of 4)",
+                            "Price": 5
+                        },
+                        {
+                            "Type": "Bagels (Pack of 6)",
+                            "Price": 4
+                        }
+                    ]
+                },
+                {
+                    "Pantry Essentials": [
+                        {
+                            "Type": "Pasta (500g)",
+                            "Price": 2
+                        },
+                        {
+                            "Type": "Rice (1kg)",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Cooking Oil (1L)",
+                            "Price": 4
+                        }
+                    ]
+                },
+                {
+                    "Beverages": [
+                        {
+                            "Type": "Orange Juice (1L)",
+                            "Price": 2.5
+                        },
+                        {
+                            "Type": "Mineral Water (1.5L)",
+                            "Price": 1
+                        },
+                        {
+                            "Type": "Coffee (200g)",
+                            "Price": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "The Bakehouse",
+            "establishmentIdentifier": "theBakehouse",
+            "establishmentType": "Bakery",
+            "location": {
+                "city": "Cork",
+                "address": "22 Sweet Street, Cork, Ireland"
+            },
+            "contact": {
+                "phone": "+353 21 987 6543",
+                "email": "info@thebakehouse.ie",
+                "website": "http://www.thebakehouse.ie"
+            },
+            "foodType": "Bakery",
+            "deliveryHours": "7:00 AM - 5:00 PM",
+            "openingHours": "6:00 AM - 6:00 PM",
+            "description": "Handcrafted breads, pastries, and cakes made fresh daily.",
+            "banner": "./images/banners/theBakehouse.jpg",
+            "tags": [
+                "bakery",
+                "bread",
+                "pastries"
+            ],
+            "menu": [
+                {
+                    "Breads": [
+                        {
+                            "Type": "Sourdough Loaf",
+                            "Price": 4
+                        },
+                        {
+                            "Type": "Whole Grain Bread",
+                            "Price": 3.5
+                        },
+                        {
+                            "Type": "Baguette",
+                            "Price": 2.5
+                        }
+                    ]
+                },
+                {
+                    "Pastries": [
+                        {
+                            "Type": "Cinnamon Roll",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Fruit Danish",
+                            "Price": 2.5
+                        },
+                        {
+                            "Type": "Chocolate Croissant",
+                            "Price": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "Spice Haven",
+            "establishmentIdentifier": "spiceHaven",
+            "establishmentType": "Restaurant",
+            "location": {
+                "city": "Limerick",
+                "address": "56 Curry Crescent, Limerick, Ireland"
+            },
+            "contact": {
+                "phone": "+353 61 123 9876",
+                "email": "info@spicehaven.ie",
+                "website": "http://www.spicehaven.ie"
+            },
+            "foodType": "Indian Cuisine",
+            "deliveryHours": "11:00 AM - 10:00 PM",
+            "openingHours": "10:00 AM - 11:00 PM",
+            "description": "Authentic Indian cuisine with rich spices and vibrant flavors.",
+            "banner": "./images/banners/spiceHaven.jpg",
+            "tags": [
+                "indian",
+                "spices",
+                "curry"
+            ],
+            "menu": [
+                {
+                    "Starters": [
+                        {
+                            "Type": "Samosas",
+                            "Price": 5
+                        },
+                        {
+                            "Type": "Onion Bhaji",
+                            "Price": 4.5
+                        }
+                    ]
+                },
+                {
+                    "Main Dishes": [
+                        {
+                            "Type": "Butter Chicken",
+                            "Price": 12
+                        },
+                        {
+                            "Type": "Vegetable Curry",
+                            "Price": 10
+                        },
+                        {
+                            "Type": "Lamb Rogan Josh",
+                            "Price": 14
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "establishmentName": "Burger Bliss",
+            "establishmentIdentifier": "burgerBliss",
+            "establishmentType": "Fast Food",
+            "location": {
+                "city": "Kilkenny",
+                "address": "99 Burger Boulevard, Kilkenny, Ireland"
+            },
+            "contact": {
+                "phone": "+353 56 321 7654",
+                "email": "support@burgerbliss.ie",
+                "website": "http://www.burgerbliss.ie"
+            },
+            "foodType": "Fast Food",
+            "deliveryHours": "11:00 AM - 11:00 PM",
+            "openingHours": "10:00 AM - 12:00 AM",
+            "description": "The ultimate destination for gourmet burgers and quick bites.",
+            "banner": "./images/banners/burgerBliss.jpg",
+            "tags": [
+                "burgers",
+                "fast food",
+                "casual dining"
+            ],
+            "menu": [
+                {
+                    "Burgers": [
+                        {
+                            "Type": "Classic Cheeseburger",
+                            "Price": 8
+                        },
+                        {
+                            "Type": "BBQ Bacon Burger",
+                            "Price": 10
+                        },
+                        {
+                            "Type": "Vegan Bliss Burger",
+                            "Price": 9
+                        }
+                    ]
+                },
+                {
+                    "Sides": [
+                        {
+                            "Type": "Fries",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Onion Rings",
+                            "Price": 4
+                        }
+                    ]
+                },
+                {
+                    "Drinks": [
+                        {
+                            "Type": "Soda",
+                            "Price": 2
+                        },
+                        {
+                            "Type": "Milkshake",
+                            "Price": 4
+                        }
                     ]
                 }
             ]
@@ -55,7 +437,7 @@
             "establishmentIdentifier": "mountainGrill",
             "establishmentType": "Restaurant",
             "location": {
-                "city": "Donegal",
+                "city": "donegal",
                 "address": "456 Highland Lane, Donegal, Ireland"
             },
             "contact": {
@@ -68,34 +450,74 @@
             "openingHours": "10:00 AM - 9:00 PM",
             "description": "A rustic spot serving grilled steaks and local specialties.",
             "banner": "./images/banners/mountainGrill.jpg",
-            "tags": ["grill", "steak", "mountain view"],
+            "tags": [
+                "grill",
+                "steak",
+                "mountain view"
+            ],
             "menu": [
                 {
                     "Starters": [
-                        { "Type": "Grilled Halloumi", "Price": 7 },
-                        { "Type": "BBQ Chicken Wings", "Price": 8 },
-                        { "Type": "Loaded Nachos", "Price": 9 }
+                        {
+                            "Type": "Grilled Halloumi",
+                            "Price": 7
+                        },
+                        {
+                            "Type": "BBQ Chicken Wings",
+                            "Price": 8
+                        },
+                        {
+                            "Type": "Loaded Nachos",
+                            "Price": 9
+                        }
                     ]
                 },
                 {
                     "Main Dishes": [
-                        { "Type": "T-Bone Steak", "Price": 28 },
-                        { "Type": "Barbecued Pork Ribs", "Price": 24 },
-                        { "Type": "Grilled Chicken Breast", "Price": 18 }
+                        {
+                            "Type": "T-Bone Steak",
+                            "Price": 28
+                        },
+                        {
+                            "Type": "Barbecued Pork Ribs",
+                            "Price": 24
+                        },
+                        {
+                            "Type": "Grilled Chicken Breast",
+                            "Price": 18
+                        }
                     ]
                 },
                 {
                     "Sides": [
-                        { "Type": "Mashed Potatoes", "Price": 4 },
-                        { "Type": "Corn on the Cob", "Price": 3 },
-                        { "Type": "Baked Beans", "Price": 3 }
+                        {
+                            "Type": "Mashed Potatoes",
+                            "Price": 4
+                        },
+                        {
+                            "Type": "Corn on the Cob",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Baked Beans",
+                            "Price": 3
+                        }
                     ]
                 },
                 {
                     "Drinks": [
-                        { "Type": "Craft Beer", "Price": 5 },
-                        { "Type": "House Lemonade", "Price": 3 },
-                        { "Type": "Iced Tea", "Price": 3 }
+                        {
+                            "Type": "Craft Beer",
+                            "Price": 5
+                        },
+                        {
+                            "Type": "House Lemonade",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Iced Tea",
+                            "Price": 3
+                        }
                     ]
                 }
             ]
@@ -105,7 +527,7 @@
             "establishmentIdentifier": "herbSpiceCafe",
             "establishmentType": "Cafe",
             "location": {
-                "city": "Sligo",
+                "city": "sligo",
                 "address": "789 Spice Road, Sligo, Ireland"
             },
             "contact": {
@@ -118,34 +540,74 @@
             "openingHours": "8:00 AM - 8:00 PM",
             "description": "A cozy cafe serving Mediterranean-inspired dishes and beverages.",
             "banner": "./images/banners/herbsAndSpiceCafe.jpg",
-            "tags": ["mediterranean", "cafe", "healthy"],
+            "tags": [
+                "mediterranean",
+                "cafe",
+                "healthy"
+            ],
             "menu": [
                 {
                     "Starters": [
-                        { "Type": "Hummus with Pita", "Price": 6 },
-                        { "Type": "Greek Salad", "Price": 7 },
-                        { "Type": "Stuffed Grape Leaves", "Price": 8 }
+                        {
+                            "Type": "Hummus with Pita",
+                            "Price": 6
+                        },
+                        {
+                            "Type": "Greek Salad",
+                            "Price": 7
+                        },
+                        {
+                            "Type": "Stuffed Grape Leaves",
+                            "Price": 8
+                        }
                     ]
                 },
                 {
                     "Main Dishes": [
-                        { "Type": "Chicken Souvlaki", "Price": 15 },
-                        { "Type": "Vegetarian Moussaka", "Price": 14 },
-                        { "Type": "Lamb Kofta", "Price": 16 }
+                        {
+                            "Type": "Chicken Souvlaki",
+                            "Price": 15
+                        },
+                        {
+                            "Type": "Vegetarian Moussaka",
+                            "Price": 14
+                        },
+                        {
+                            "Type": "Lamb Kofta",
+                            "Price": 16
+                        }
                     ]
                 },
                 {
                     "Sides": [
-                        { "Type": "Couscous Salad", "Price": 4 },
-                        { "Type": "Tabbouleh", "Price": 4 },
-                        { "Type": "Olive Tapenade", "Price": 3 }
+                        {
+                            "Type": "Couscous Salad",
+                            "Price": 4
+                        },
+                        {
+                            "Type": "Tabbouleh",
+                            "Price": 4
+                        },
+                        {
+                            "Type": "Olive Tapenade",
+                            "Price": 3
+                        }
                     ]
                 },
                 {
                     "Drinks": [
-                        { "Type": "Turkish Coffee", "Price": 4 },
-                        { "Type": "Mint Tea", "Price": 3 },
-                        { "Type": "Fresh Orange Juice", "Price": 3 }
+                        {
+                            "Type": "Turkish Coffee",
+                            "Price": 4
+                        },
+                        {
+                            "Type": "Mint Tea",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Fresh Orange Juice",
+                            "Price": 3
+                        }
                     ]
                 }
             ]
@@ -155,7 +617,7 @@
             "establishmentIdentifier": "theIrishPub",
             "establishmentType": "Pub",
             "location": {
-                "city": "Donegal",
+                "city": "donegal",
                 "address": "321 Emerald Street, Donegal, Ireland"
             },
             "contact": {
@@ -168,34 +630,74 @@
             "openingHours": "12:00 PM - 12:00 AM",
             "description": "A traditional pub serving hearty Irish meals and drinks.",
             "banner": "./images/banners/irishPub.jpg",
-            "tags": ["irish", "pub food", "Drinks"],
+            "tags": [
+                "irish",
+                "pub food",
+                "Drinks"
+            ],
             "menu": [
                 {
                     "Starters": [
-                        { "Type": "Irish Potato Soup", "Price": 5 },
-                        { "Type": "Smoked Salmon", "Price": 10 },
-                        { "Type": "Black Pudding", "Price": 7 }
+                        {
+                            "Type": "Irish Potato Soup",
+                            "Price": 5
+                        },
+                        {
+                            "Type": "Smoked Salmon",
+                            "Price": 10
+                        },
+                        {
+                            "Type": "Black Pudding",
+                            "Price": 7
+                        }
                     ]
                 },
                 {
                     "Main Dishes": [
-                        { "Type": "Beef and Guinness Stew", "Price": 15 },
-                        { "Type": "Irish Lamb Shank", "Price": 18 },
-                        { "Type": "Fish and Chips", "Price": 14 }
+                        {
+                            "Type": "Beef and Guinness Stew",
+                            "Price": 15
+                        },
+                        {
+                            "Type": "Irish Lamb Shank",
+                            "Price": 18
+                        },
+                        {
+                            "Type": "Fish and Chips",
+                            "Price": 14
+                        }
                     ]
                 },
                 {
                     "Sides": [
-                        { "Type": "Colcannon", "Price": 4 },
-                        { "Type": "Boxty", "Price": 5 },
-                        { "Type": "Soda Bread", "Price": 3 }
+                        {
+                            "Type": "Colcannon",
+                            "Price": 4
+                        },
+                        {
+                            "Type": "Boxty",
+                            "Price": 5
+                        },
+                        {
+                            "Type": "Soda Bread",
+                            "Price": 3
+                        }
                     ]
                 },
                 {
                     "Drinks": [
-                        { "Type": "Guinness", "Price": 5 },
-                        { "Type": "Irish Whiskey", "Price": 6 },
-                        { "Type": "Apple Cider", "Price": 4 }
+                        {
+                            "Type": "Guinness",
+                            "Price": 5
+                        },
+                        {
+                            "Type": "Irish Whiskey",
+                            "Price": 6
+                        },
+                        {
+                            "Type": "Apple Cider",
+                            "Price": 4
+                        }
                     ]
                 }
             ]
@@ -205,7 +707,7 @@
             "establishmentIdentifier": "tasteOfIndia",
             "establishmentType": "Restaurant",
             "location": {
-                "city": "Sligo",
+                "city": "sligo",
                 "address": "678 Curry Lane, Sligo, Ireland"
             },
             "contact": {
@@ -218,34 +720,74 @@
             "openingHours": "10:00 AM - 11:00 PM",
             "description": "Authentic Indian cuisine with a variety of spices and flavors.",
             "banner": "./images/banners/tasteOfIndia.jpg",
-            "tags": ["indian", "spices", "flavors"],
+            "tags": [
+                "indian",
+                "spices",
+                "flavors"
+            ],
             "menu": [
                 {
                     "Starters": [
-                        { "Type": "Samosa", "Price": 5 },
-                        { "Type": "Aloo Tikki", "Price": 6 },
-                        { "Type": "Paneer Tikka", "Price": 8 }
+                        {
+                            "Type": "Samosa",
+                            "Price": 5
+                        },
+                        {
+                            "Type": "Aloo Tikki",
+                            "Price": 6
+                        },
+                        {
+                            "Type": "Paneer Tikka",
+                            "Price": 8
+                        }
                     ]
                 },
                 {
                     "Main Dishes": [
-                        { "Type": "Chicken Tikka Masala", "Price": 14 },
-                        { "Type": "Lamb Rogan Josh", "Price": 16 },
-                        { "Type": "Vegetable Biryani", "Price": 12 }
+                        {
+                            "Type": "Chicken Tikka Masala",
+                            "Price": 14
+                        },
+                        {
+                            "Type": "Lamb Rogan Josh",
+                            "Price": 16
+                        },
+                        {
+                            "Type": "Vegetable Biryani",
+                            "Price": 12
+                        }
                     ]
                 },
                 {
                     "Sides": [
-                        { "Type": "Naan", "Price": 3 },
-                        { "Type": "Raita", "Price": 2 },
-                        { "Type": "Papadum", "Price": 1 }
+                        {
+                            "Type": "Naan",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Raita",
+                            "Price": 2
+                        },
+                        {
+                            "Type": "Papadum",
+                            "Price": 1
+                        }
                     ]
                 },
                 {
                     "Drinks": [
-                        { "Type": "Mango Lassi", "Price": 4 },
-                        { "Type": "Masala Chai", "Price": 3 },
-                        { "Type": "Kingfisher Beer", "Price": 5 }
+                        {
+                            "Type": "Mango Lassi",
+                            "Price": 4
+                        },
+                        {
+                            "Type": "Masala Chai",
+                            "Price": 3
+                        },
+                        {
+                            "Type": "Kingfisher Beer",
+                            "Price": 5
+                        }
                     ]
                 }
             ]
