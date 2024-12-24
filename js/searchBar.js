@@ -20,7 +20,7 @@ function searchBarInit() {
 }
 function searchEstablisments(cityName) {
     //Function checks if there is an establishment in inputted city
-    const index = data.map((u) => u.location.city).indexOf(cityName)
+    const index = data.map((u) => u.location.city.toLowerCase).indexOf(cityName.toLowerCase())
     if (index !== -1) {
         localStorage.setItem('cityFilter',`${cityName}`);
     }
