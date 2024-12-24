@@ -182,13 +182,13 @@ function actionMenu(element) {
   //Setting attributes for the button container
   buttonContainer.setAttribute(
     "class",
-    "col-sm-8 gap-2 d-flex align-items-center justify-content-start"
+    "col-sm-8 gap-2 d-flex align-items-center justify-content-md-start justify-content-center"
   );
 
   //Setting attributes for the totalText container
   totalTextContainer.setAttribute(
     "class",
-    "col-sm-4 gap-3 d-flex justify-content-end"
+    "col-sm-4 gap-3 d-flex justify-content-md-end justify-content-between"
   );
 
   //Defining other elements
