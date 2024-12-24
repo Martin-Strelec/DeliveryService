@@ -95,7 +95,7 @@
             "establishmentIdentifier": "urbanGrind",
             "establishmentType": "Café",
             "location": {
-                "city": "Dublin",
+                "city": "dublin",
                 "address": "45 Central Plaza, Dublin, Ireland"
             },
             "contact": {
@@ -153,7 +153,7 @@
             "establishmentIdentifier": "greenGrocers",
             "establishmentType": "Grocery Store",
             "location": {
-                "city": "Galway",
+                "city": "galway",
                 "address": "78 Fresh Market Lane, Galway, Ireland"
             },
             "contact": {
@@ -259,7 +259,7 @@
             "establishmentIdentifier": "theBakehouse",
             "establishmentType": "Bakery",
             "location": {
-                "city": "Cork",
+                "city": "cork",
                 "address": "22 Sweet Street, Cork, Ireland"
             },
             "contact": {
@@ -317,7 +317,7 @@
             "establishmentIdentifier": "spiceHaven",
             "establishmentType": "Restaurant",
             "location": {
-                "city": "Limerick",
+                "city": "limerick",
                 "address": "56 Curry Crescent, Limerick, Ireland"
             },
             "contact": {
@@ -371,7 +371,7 @@
             "establishmentIdentifier": "burgerBliss",
             "establishmentType": "Fast Food",
             "location": {
-                "city": "Kilkenny",
+                "city": "kilkenny",
                 "address": "99 Burger Boulevard, Kilkenny, Ireland"
             },
             "contact": {
