@@ -134,9 +134,9 @@ function createAccordion(item, container) {
             itemContainer.appendChild(elementContainer2);
 
             elementContainer3.setAttribute('class', 'col-lg-4 align-items-center justify-content-end');
-            buttonContainer.appendChild(accordionBodyAddButton);
-            buttonContainer.appendChild(accordionBodyItemCount);
             buttonContainer.appendChild(accordionBodyRemoveButton);
+            buttonContainer.appendChild(accordionBodyItemCount);
+            buttonContainer.appendChild(accordionBodyAddButton);
             elementContainer3.appendChild(buttonContainer);
 
             itemContainer.appendChild(elementContainer3);

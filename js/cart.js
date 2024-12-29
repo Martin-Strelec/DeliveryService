@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   //Returning html elements 
   const orderDetails = document.getElementById("orderDetails");
-  
+
   //Returning localStorage items
   const cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -14,7 +14,7 @@ function displayItems(cart, element) {
 
   //Creating vertical container
   const vstackContainer = document.createElement("div");
-  vstackContainer.setAttribute("class", "vstack gap-3 p-5 bg-light rounded-3");
+  vstackContainer.setAttribute("class", "vstack gap-3 p-3 border border-secondary border-end-0 border-start-0");
 
   //Checking the cart
   if (cart.length !== 0) {
@@ -22,7 +22,7 @@ function displayItems(cart, element) {
       localStorage.getItem("selectedEstablishment")
     );
     const heading = document.createElement("h1");
-    heading.setAttribute("class", " pb-2 text-center fw-light border-bottom border-secondary");
+    heading.setAttribute("class", " pb-2 text-center fw-light");
     heading.textContent = `${selectedEstablishment.establishmentName} (${selectedEstablishment.establishmentType})`;
 
     element.appendChild(heading);
@@ -77,6 +77,17 @@ function displayItems(cart, element) {
       );
       itemPriceContainer.appendChild(itemPrice);
 
+      //Set attributes for the subtractButton
+      subtractButton.setAttribute("type", "button");
+      subtractButton.setAttribute("class", "btn btn-danger");
+      subtractButton.setAttribute("id", `${item.Type}-subtract-btn`);
+      subtractButton.addEventListener("click", () => {
+        subtractFromCart(item);
+        displayItems(JSON.parse(localStorage.getItem("cart")), element);
+      });
+      subtractButton.textContent = "-";
+      buttonContainer.appendChild(subtractButton);
+
       //Set attributes for the addButton
       addButton.setAttribute("type", "button");
       addButton.setAttribute("class", "btn btn-info");
@@ -89,17 +100,6 @@ function displayItems(cart, element) {
       buttonContainer.appendChild(addButton);
 
       //Set attributes for the subtractButton
-      subtractButton.setAttribute("type", "button");
-      subtractButton.setAttribute("class", "btn btn-danger");
-      subtractButton.setAttribute("id", `${item.Type}-subtract-btn`);
-      subtractButton.addEventListener("click", () => {
-        subtractFromCart(item);
-        displayItems(JSON.parse(localStorage.getItem("cart")), element);
-      });
-      subtractButton.textContent = "-";
-      buttonContainer.appendChild(subtractButton);
-
-      //Set attributes for the subtractButton
       removeButton.setAttribute("type", "button");
       removeButton.setAttribute("class", "btn btn-danger ms-2");
       removeButton.setAttribute("id", `${item.Type}-remove-btn`);
@@ -110,7 +110,6 @@ function displayItems(cart, element) {
       removeButton.textContent = "X";
       itemPriceContainer.appendChild(removeButton);
 
-      //itemContainer.appendChild(removeButton);
       itemContainer.appendChild(itemAttributesContainer);
       itemContainer.appendChild(itemNameContainer);
       itemContainer.appendChild(buttonContainer);
@@ -176,7 +175,7 @@ function actionMenu(element) {
   //Setting attributes for the main container
   container.setAttribute(
     "class",
-    "row mt-3 gap-3 gap-sm-0 justify-content-center border-top border-secondary pt-3"
+    "row mt-3 gap-3 gap-sm-0 justify-content-center pt-3"
   );
 
   //Setting attributes for the button container
@@ -287,7 +286,7 @@ function subtractFromCart(food) {
 function removeFromCart(food) {
   //Parsing from the local storage
   currentCart = JSON.parse(localStorage.getItem("cart"));
-  
+
   //Checking the cart
   if (currentCart !== 0) {
     //Mapping Type attribute in the tempCart array to check if the food.Type is already in the cart
@@ -349,5 +348,5 @@ function displayUser(element) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     element.setAttribute('class', 'bg-light rounded-3 p-1 ms-1 small');
     element.textContent = `${currentUser.uName}`;
-}
+  }
 }
